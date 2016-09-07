@@ -1,0 +1,13 @@
+library ieee;
+
+use ieee.std_logic_1164.all;
+
+entity stop_generator is
+port(
+
+	reset : in std_logic;
+	stop : in std_logic;
+	
+	steady_stop : out std_logic
+);
+end stop_generator;

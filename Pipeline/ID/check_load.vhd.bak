@@ -1,0 +1,17 @@
+library ieee;
+
+entity check_load is
+
+	port(
+	
+		opcode : in std_logic_vector (3 downto 0);
+		
+		cache_addr : out std_logic_vector (31 downto 0);
+	
+	);
+	
+end check_load;
+
+architecture check_load_behave of check_load is
+begin
+end check_load_behave;

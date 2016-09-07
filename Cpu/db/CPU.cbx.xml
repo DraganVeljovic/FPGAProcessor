@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="CPU">
+		<CBX_INST_ENTRY INSTANCE_NAME="|CPU|id_complete:id_stage|cache:data_cache|gmemory:data|altsyncram:mem_reg[0][31]__1" CBX_FILE_NAME="altsyncram_8og1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|CPU|if_complete:if_stage|cache:instr_cache|gmemory:data|altsyncram:mem_reg[0][31]__1" CBX_FILE_NAME="altsyncram_8og1.tdf"/>
+	</PROJECT>
+</LOG_ROOT>

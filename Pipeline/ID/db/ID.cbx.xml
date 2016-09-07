@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="ID">
+		<CBX_INST_ENTRY INSTANCE_NAME="|id_complete|cache:data_cache|gmemory:data|altsyncram:mem_reg[0][31]__1" CBX_FILE_NAME="altsyncram_8og1.tdf"/>
+	</PROJECT>
+</LOG_ROOT>

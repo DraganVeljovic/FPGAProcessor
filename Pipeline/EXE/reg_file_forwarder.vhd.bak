@@ -1,0 +1,11 @@
+library ieee;
+
+use ieee.std_logic_1164.all;
+
+entity reg_file_forwarder is
+
+end reg_file_forwarder;
+
+architecture reg_file_forwarder_behave of reg_file_forwarder is 
+begin
+end reg_file_forwarder_behave;

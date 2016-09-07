@@ -1,0 +1,58 @@
+LIBRARY ieee;                                               
+USE ieee.std_logic_1164.all;                                
+
+ENTITY module_test IS
+END module_test;
+ARCHITECTURE module_test_arch OF module_test IS
+-- constants                                                 
+-- signals                                                   
+SIGNAL addr : STD_LOGIC_VECTOR(12 DOWNTO 0);
+SIGNAL clk : STD_LOGIC;
+SIGNAL dbus : STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL rd : STD_LOGIC;
+SIGNAL wr : STD_LOGIC;
+
+BEGIN
+	module : work.module
+	PORT MAP (
+		'1', clk, addr, dbus, rd, wr
+	);
+PROCESS                                               
+BEGIN                                                        
+
+	clk <= '1';
+	wait for 5 ns;
+	clk <= '0';
+	wait for 5 ns;
+
+END PROCESS;                                           
+
+PROCESS                                              
+BEGIN  
+
+	wait until rising_edge(clk);
+
+	-- WRITE
+	abus <= X"0000_8000";
+	dbus <= X"0000_0001";
+	wr <= '1';
+	rd <= '0';
+	
+	wait until rising_edge(clk);
+	
+	-- WRITE
+	abus <= X"0000_8001";
+	dbus <= X"0000_0002";
+	wr <= '1';
+	rd <= '0';
+	
+	wait until rising_edge(clk);
+	
+	-- READ
+	abus <= X"0000_8000";
+	wr <= '0';
+	rd <= '1';
+
+WAIT;
+END PROCESS;                                          
+END memory_arch;

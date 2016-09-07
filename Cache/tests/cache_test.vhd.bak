@@ -1,0 +1,105 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity cache_test is
+end entity;
+
+architecture test of cache_test is
+
+	-- cache address, data_in and data_out
+	signal address: std_logic_vector(31 downto 0);
+	signal data_in: std_logic_vector(31 downto 0);
+	signal data_out: std_logic_vector(31 downto 0);
+	
+	signal read, write, stop: std_logic;
+	
+	signal clk: std_logic;
+	
+	signal reset: std_logic;
+	
+	-- indicates that cache is working with MEM
+	-- generates STALL signal
+	signal wait_mem: std_logic;
+	
+	-- memory address and data (ABUS and DBUS)
+	signal mem_addr: std_logic_vector(31 downto 0);
+	signal mem_data: std_logic_vector(31 downto 0);
+	
+	-- memory read and write signals
+	signal mem_write, mem_read: std_logic;
+	
+	-- memory requesst and acknowledgement
+	signal req, ack: std_logic;
+	
+begin
+	instance: entity work.cache port map(
+		address, data_in, data_out, read, write, stop, clk, reset, wait_mem, mem_addr, mem_data, mem_read, mem_write, req, ack
+	);
+	
+	clock: process
+	begin
+		clk <= '1';
+		wait for 20 ns;
+		clk <= '0';
+		wait for 20 ns;
+	end process;
+	
+	sim: process
+	begin
+		
+		mem_data <= "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ";
+	
+		reset <= '1';
+		stop <= '0';
+		wait for 40 ns;
+		reset <= '0';
+		ack <= '0';
+	
+		-- WRITE
+		wait for 10 ns;
+		address <= X"0000_3FE8"; -- TAG = FF, ULAZ = 2, WORD = 2, BYTE = 0
+		data_in <= X"AAAA_2222";
+		write <= '1';
+		read <= '0'; -- 1
+		wait for 10 ns;
+		ack <= '1';
+		wait for 20 ns;
+		
+		wait for 420 ns;
+		
+		mem_data <= X"0000_AAAA";
+		wait for 40 ns;
+		mem_data <= X"1111_AAAA";
+		wait for 40 ns;
+		mem_data <= X"2222_AAAA";
+		wait for 40 ns;
+		mem_data <= X"3333_AAAA";
+		wait for 60 ns;
+		
+		mem_data <= "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ";
+		
+		-- READ
+		wait for 10 ns;
+		address <= X"0000_3FA8"; -- TAG = FE, ULAZ = 2, WORD = 2, BYTE = 0
+		write <= '0';
+		read <= '1';
+		IR_22 <= '0';
+		wait for 30 ns;
+		
+		wait for 860 ns;
+		
+		mem_data <= X"BBBB_0000";
+		wait for 40 ns;
+		mem_data <= X"BBBB_1111";
+		wait for 40 ns;
+		mem_data <= X"BBBB_2222";
+		wait for 40 ns;
+		mem_data <= X"BBBB_3333";
+		wait for 60 ns;
+		
+		mem_data <= "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ";
+		
+		wait for 40 ns;
+		
+	end process;
+end architecture;

@@ -1,0 +1,24 @@
+library ieee;
+
+entity ram is 
+
+	port(
+		
+		cs : in std_logic;
+
+		clk : in std_logic;
+		
+		ram_address : in std_logic_vector (16 downto 0);
+		
+		ram_data : inout std_logic_vector (31 downto 0);
+		
+		ram_read : in std_logic;
+		ram_write : in std_logic;
+	
+	);
+
+end;
+
+architecture ram_behave of ram is 
+begin
+end ram_behave

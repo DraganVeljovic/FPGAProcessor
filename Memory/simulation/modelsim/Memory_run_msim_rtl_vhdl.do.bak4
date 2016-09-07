@@ -1,0 +1,20 @@
+transcript on
+if {[file exists rtl_work]} {
+	vdel -lib rtl_work -all
+}
+vlib rtl_work
+vmap work rtl_work
+
+vcom -93 -work work {D:/Quartus Projects/VLSIProjekat/Memory/memory_package.vhd}
+vcom -93 -work work {D:/Quartus Projects/VLSIProjekat/Memory/module.vhd}
+vcom -93 -work work {D:/Quartus Projects/VLSIProjekat/Memory/mem.vhd}
+vcom -93 -work work {D:/Quartus Projects/VLSIProjekat/Memory/memory.vhd}
+
+vcom -93 -work work {D:/Quartus Projects/VLSIProjekat/Memory/simulation/modelsim/memory.vht}
+
+vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cycloneii -L rtl_work -L work -voptargs="+acc"  memory_vhd_tst
+
+add wave *
+view structure
+view signals
+run 200 ns

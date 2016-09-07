@@ -1,0 +1,7 @@
+library ieee;
+
+package types is
+
+	type instruction_type is (DP_R, DP_I, LS, RMW, BBL, S);
+
+end package;

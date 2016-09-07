@@ -1,0 +1,178 @@
+m255
+K3
+13
+cModel Technology
+Z0 dD:\Quartus Projects\VLSIProjekat\Memory\simulation\modelsim
+Emem_chip
+Z1 w1406665912
+Z2 DPx3 std 6 textio 0 22 5>J:;AW>W0[[dW0I6EN1Q0
+Z3 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
+Z4 dD:\Quartus Projects\VLSIProjekat\Memory\simulation\modelsim
+Z5 8D:/Quartus Projects/VLSIProjekat/Memory/mem.vhd
+Z6 FD:/Quartus Projects/VLSIProjekat/Memory/mem.vhd
+l0
+L5
+VInXJc5<iBhgL7?_a8E=<i0
+Z7 OV;C;10.1d;51
+31
+Z8 !s108 1406710585.924000
+Z9 !s90 -reportprogress|300|-93|-work|work|D:/Quartus Projects/VLSIProjekat/Memory/mem.vhd|
+Z10 !s107 D:/Quartus Projects/VLSIProjekat/Memory/mem.vhd|
+Z11 o-93 -work work -O0
+Z12 tExplicit 1
+!s100 AQB>HhzeozQbI<cR`;0d03
+!i10b 1
+Amem_chip_behave
+Z13 DPx4 work 14 memory_package 0 22 Dz=NYJ5leij;NP2g_Zaz<0
+Z14 DPx4 ieee 15 std_logic_arith 0 22 4`Y?g_lkdn;7UL9IiJck01
+Z15 DPx4 ieee 18 std_logic_unsigned 0 22 RYmj;=TK`k=k>D@Cz`zoB3
+Z16 DPx4 ieee 11 numeric_std 0 22 O3PF8EB`?j9=z7KT`fn941
+Z17 DEx4 work 6 module 0 22 0f;;b]4Hg>G<>i21i1NcA3
+R2
+R3
+Z18 DEx4 work 8 mem_chip 0 22 InXJc5<iBhgL7?_a8E=<i0
+l31
+L24
+V_ilIeGF`Ifb;fmm1mXVzO1
+R7
+31
+R8
+R9
+R10
+R11
+R12
+!s100 8L;WF06HHS:bOckE4YaWJ1
+!i10b 1
+Ememory
+Z19 w1406670220
+R2
+R3
+R4
+Z20 8D:/Quartus Projects/VLSIProjekat/Memory/memory.vhd
+Z21 FD:/Quartus Projects/VLSIProjekat/Memory/memory.vhd
+l0
+L5
+VjQL=KaU`mACWe]QAi3d]P3
+R7
+31
+Z22 !s108 1406710586.234000
+Z23 !s90 -reportprogress|300|-93|-work|work|D:/Quartus Projects/VLSIProjekat/Memory/memory.vhd|
+Z24 !s107 D:/Quartus Projects/VLSIProjekat/Memory/memory.vhd|
+R11
+R12
+!s100 czfzndU;QGNi:XRDlz<LF2
+!i10b 1
+Amemory_behave
+R18
+R2
+R3
+DEx4 work 6 memory 0 22 jQL=KaU`mACWe]QAi3d]P3
+l32
+L25
+V@]0h4`^OTV]Sz6V@D<XSf2
+R7
+31
+R22
+R23
+R24
+R11
+R12
+!s100 @k9VeSkI82I5;SGo[EL1a2
+!i10b 1
+Pmemory_package
+R2
+R3
+w1406652186
+R4
+8D:/Quartus Projects/VLSIProjekat/Memory/memory_package.vhd
+FD:/Quartus Projects/VLSIProjekat/Memory/memory_package.vhd
+l0
+L5
+VDz=NYJ5leij;NP2g_Zaz<0
+R7
+31
+R11
+R12
+!s100 S]ign1dL^Izc8^4Uh0R@@1
+!i10b 1
+!s108 1406710585.527000
+!s90 -reportprogress|300|-93|-work|work|D:/Quartus Projects/VLSIProjekat/Memory/memory_package.vhd|
+!s107 D:/Quartus Projects/VLSIProjekat/Memory/memory_package.vhd|
+Ememory_vhd_tst
+Z25 w1406710554
+R2
+R3
+R4
+Z26 8D:/Quartus Projects/VLSIProjekat/Memory/simulation/modelsim/memory.vht
+Z27 FD:/Quartus Projects/VLSIProjekat/Memory/simulation/modelsim/memory.vht
+l0
+L4
+VCnlDhN^2AkN433MLWLdLY2
+!s100 kj?HF?_51lzo5nRS9ogS`3
+R7
+31
+!i10b 1
+Z28 !s108 1406710586.504000
+Z29 !s90 -reportprogress|300|-93|-work|work|D:/Quartus Projects/VLSIProjekat/Memory/simulation/modelsim/memory.vht|
+Z30 !s107 D:/Quartus Projects/VLSIProjekat/Memory/simulation/modelsim/memory.vht|
+R11
+R12
+Amemory_arch
+R2
+R3
+DEx4 work 14 memory_vhd_tst 0 22 CnlDhN^2AkN433MLWLdLY2
+l25
+L6
+V_eWQVeiPO@eS@KTfIco7c3
+!s100 9U0OLaNJAe7ec_1CQ;>7l3
+R7
+31
+!i10b 1
+R28
+R29
+R30
+R11
+R12
+Emodule
+Z31 w1406662055
+R13
+R14
+R15
+R16
+R2
+R3
+R4
+Z32 8D:/Quartus Projects/VLSIProjekat/Memory/module.vhd
+Z33 FD:/Quartus Projects/VLSIProjekat/Memory/module.vhd
+l0
+L9
+V0f;;b]4Hg>G<>i21i1NcA3
+R7
+31
+Z34 !s108 1406710585.691000
+Z35 !s90 -reportprogress|300|-93|-work|work|D:/Quartus Projects/VLSIProjekat/Memory/module.vhd|
+Z36 !s107 D:/Quartus Projects/VLSIProjekat/Memory/module.vhd|
+R11
+R12
+!s100 zhdH8jmgj7Sfo<];cd?>H1
+!i10b 1
+Amodule_behave
+R13
+R14
+R15
+R16
+R2
+R3
+R17
+l43
+L28
+V1giWcS=NRRgO[nCPe9a`G1
+R7
+31
+R34
+R35
+R36
+R11
+R12
+!s100 ZiVODWI>J[15bLjnMJZ791
+!i10b 1

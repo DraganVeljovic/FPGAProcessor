@@ -1,0 +1,18 @@
+library ieee;
+
+use ieee.std_logic_1164.all;
+
+use work.instructions_types.all;
+
+entity operation_decoder is
+	port(
+		
+		ir : in std_logic_vector (31 downto 0);
+		
+		instr_type : out instruction_type;
+	);
+end operation_decoder;
+
+architecture operation_decoder_behave of operation_decoder is
+begin
+end operation_decoder_behave;

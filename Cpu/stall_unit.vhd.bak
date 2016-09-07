@@ -1,0 +1,52 @@
+library ieee;
+
+use ieee.std_logic_1164.all;
+
+entity stall_unit is
+
+	port(
+	
+		clk : in std_logic;
+		reset : in std_logic;
+		
+		stop : in std_logic;
+		wait_mem : in std_logic;
+		
+		stall_clk : out std_logic
+	
+	);
+
+end stall_unit;
+
+architecture stall_unit_behave of stall_unit is
+begin 
+
+	process (clk) is
+	begin
+	
+		stall_clk <= clk;
+	
+		if (reset = '1') then
+		
+			stall_clk <= clk;
+		
+		elsif (rising_edge(clk)) then
+		
+				if (stop = '1') then
+				
+					stall_clk <= '0';
+				
+				elsif (wait_mem = '1') then
+				
+						stall_clk <= '0';
+					
+					else
+					
+						stall_clk <= clk;
+					
+					end if;
+		
+			end if;
+	end process;
+
+end stall_unit_behave;

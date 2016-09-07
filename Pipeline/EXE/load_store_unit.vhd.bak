@@ -1,0 +1,114 @@
+library ieee;
+
+use ieee.std_logic_1164.all;
+
+entity load_store_unit is
+
+	port(
+	
+		clk : in std_logic;
+		reset : in std_logic;
+		
+		l : in std_logic;
+	
+		rn : in std_logic_vector (31 downto 0);
+		rd : in std_logic_vector (31 downto 0);
+		
+		rd_addr : in std_logic_vector (3 downto 0);
+		
+		reg_out : out std_logic_vector (31 downto 0);
+		reg_no : out std_logic_vector (3 downto 0);
+		reg_wr : out std_logic;
+		
+		stall : out std_logic;
+		
+		mem_data_in : out std_logic_vector(31 downto 0);
+		mem_data_out : in std_logic_vector(31 downto 0);
+		mem_addr : out std_logic_vector (31 downto 0);
+		mem_read : out std_logic;
+		mem_write : out std_logic
+	
+	);
+
+end load_store_unit;
+
+architecture load_store_unit_behave of load_store_unit is
+
+	type load_store_state is (REQUEST_STATE, EXECUTE_STATE);
+	
+	signal current_state, next_state : load_store_state;
+	
+begin 
+
+	process (clk, reset) is
+	begin 
+	
+		if (reset = '1') then
+		
+			current_state <= REQUEST_STATE;
+			
+		elsif (rising_edge(clk)) then
+			
+				current_state <= next_state;
+			
+			end if;
+	
+	end process; 
+	
+	process (l, rn, rd, rd_addr, mem_data_out, current_state, next_state) is
+	begin 
+	
+		reg_out <= (others => '0');
+		reg_no <= (others => '0');
+		reg_wr <= '0';
+		
+		mem_addr <= (others => '0');
+		mem_data_in <= (others => '0');
+		mem_read <= '0';
+		mem_write <= '0';
+		
+		next_state <= REQUEST_STATE;
+	
+		case current_state is
+		
+			when REQUEST_STATE =>
+									
+					mem_addr <= rn;
+					
+					if (l = '0') then
+					
+						mem_data_in <= rd;
+						mem_write <= '1';
+					
+					elsif (l = '1') then
+					
+							mem_read <= '1';
+					
+						end if;
+						
+					stall <= '1';
+					
+					next_state <= EXECUTE_STATE;
+					
+			when EXECUTE_STATE =>
+			
+					if (l = '1') then
+					
+						reg_out <= mem_data_out;
+						reg_no <= rd_addr;
+						reg_wr <= '1';
+					
+					end if;
+					
+					stall <= '0';
+					
+					next_state <= REQUEST_STATE;
+					
+			when others =>
+				null;
+		
+		end case;
+		
+	end process;
+
+end load_store_unit_behave;

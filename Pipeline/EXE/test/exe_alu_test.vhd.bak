@@ -1,0 +1,80 @@
+library ieee;
+
+use ieee.std_logic_1164.all;
+
+entity exe_alu_test is
+end exe_alu_test;
+
+architecture eat_arch of exe_alu_test is
+	
+	signal addr : std_logic_vector(31 downto 0);
+	signal data_in : std_logic_vector(31 downto 0);
+	signal data_out : std_logic_vector(31 downto 0);
+	
+	signal clk : std_logic;
+	signal reset : std_logic;
+	
+	signal rd : std_logic;
+	signal wr : std_logic;
+	
+	signal stop : std_logic;
+	
+	signal wait_mem : std_logic;
+
+	component cache_mem is
+		port(
+	
+		addr : in std_logic_vector (31 downto 0);
+		data_in : in std_logic_vector (31 downto 0);
+		data_out : out std_logic_vector (31 downto 0);
+		
+		rd : in std_logic;
+		wr : in std_logic;
+		
+		stop : in std_logic;
+		
+		clk : in std_logic;
+		reset : in std_logic;
+		
+		wait_mem : out std_logic
+		
+	);
+	end component;
+begin
+
+	cache_mem_instance : cache_mem port map (
+		addr, data_in, data_out, rd, wr, stop, clk, reset, wait_mem
+	);
+	
+	process 
+	begin
+		clk <= '1';
+		wait for 5 ns;
+		clk <= '0';
+		wait for 5 ns;
+	end process;
+	
+	process
+	begin
+	
+		reset <= '1';
+		stop <= '0';
+		
+		wait until rising_edge(clk);
+		
+		reset <= '0';
+		
+		-- READ
+		addr <= X"0000_0000";
+		rd <= '1';
+		wr <= '0';
+		
+		wait until rising_edge(clk);
+		
+		addr <= (others => 'Z');
+		rd <= '0';
+		wr <= '0';
+		
+	wait;
+	end process;
+end eat_arch;

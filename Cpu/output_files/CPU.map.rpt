@@ -1,0 +1,1324 @@
+Analysis & Synthesis report for CPU
+Wed Aug 27 18:45:17 2014
+Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis RAM Summary
+  9. State Machine - |cpu|arbiter:arbitrary|state_reg
+ 10. State Machine - |cpu|id_complete:id_stage|id_exe:id_exe|instr_type_out
+ 11. State Machine - |cpu|id_complete:id_stage|cache:data_cache|current_state
+ 12. State Machine - |cpu|if_complete:if_stage|cache:instr_cache|current_state
+ 13. Logic Cells Representing Combinational Loops
+ 14. Registers Removed During Synthesis
+ 15. Removed Registers Triggering Further Register Optimizations
+ 16. General Register Statistics
+ 17. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 18. Source assignments for if_complete:if_stage|cache:instr_cache|gmemory:data|altsyncram:mem_reg[0][31]__1|altsyncram_8og1:auto_generated
+ 19. Source assignments for id_complete:id_stage|cache:data_cache|gmemory:data|altsyncram:mem_reg[0][31]__1|altsyncram_8og1:auto_generated
+ 20. Parameter Settings for User Entity Instance: if_complete:if_stage|cache:instr_cache
+ 21. Parameter Settings for User Entity Instance: if_complete:if_stage|cache:instr_cache|gmemory:data
+ 22. Parameter Settings for User Entity Instance: if_complete:if_stage|cache:instr_cache|gmemory:data|altsyncram:mem_reg[0][31]__1
+ 23. Parameter Settings for User Entity Instance: id_complete:id_stage|cache:data_cache
+ 24. Parameter Settings for User Entity Instance: id_complete:id_stage|cache:data_cache|gmemory:data
+ 25. Parameter Settings for User Entity Instance: id_complete:id_stage|cache:data_cache|gmemory:data|altsyncram:mem_reg[0][31]__1
+ 26. altsyncram Parameter Settings by Entity Instance
+ 27. Port Connectivity Checks: "exe_complete:exe_stage|alu:alu|adder:add"
+ 28. Port Connectivity Checks: "exe_complete:exe_stage|alu:alu|suber:sub"
+ 29. Port Connectivity Checks: "exe_complete:exe_stage|csr:csr"
+ 30. Port Connectivity Checks: "if_complete:if_stage|cache:instr_cache"
+ 31. Elapsed Time Per Partition
+ 32. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++--------------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                         ;
++------------------------------------+-------------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Wed Aug 27 18:45:17 2014           ;
+; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
+; Revision Name                      ; CPU                                             ;
+; Top-level Entity Name              ; cpu                                             ;
+; Family                             ; Cyclone II                                      ;
+; Total logic elements               ; 6,143                                           ;
+;     Total combinational functions  ; 5,310                                           ;
+;     Dedicated logic registers      ; 1,853                                           ;
+; Total registers                    ; 1853                                            ;
+; Total pins                         ; 70                                              ;
+; Total virtual pins                 ; 0                                               ;
+; Total memory bits                  ; 4,096                                           ;
+; Embedded Multiplier 9-bit elements ; 0                                               ;
+; Total PLLs                         ; 0                                               ;
++------------------------------------+-------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EP2C70F896I8       ;                    ;
+; Top-level entity name                                                      ; CPU                ; CPU                ;
+; Family name                                                                ; Cyclone II         ; Cyclone IV GX      ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; Off                ; Off                ;
+; Report Parameter Settings                                                  ; On                 ; On                 ;
+; Report Source Assignments                                                  ; On                 ; On                 ;
+; Report Connectivity Checks                                                 ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization                                               ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                       ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
+; Synthesis Seed                                                             ; 1                  ; 1                  ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 4      ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                          ;
++----------------------------------------+-----------------+------------------------------+-----------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path       ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                ; Library ;
++----------------------------------------+-----------------+------------------------------+-----------------------------------------------------------------------------+---------+
+; ../Pipeline/EXE/swap_resolver.vhd      ; yes             ; User VHDL File               ; D:/Quartus Projects/VLSIProjekat_memory/Pipeline/EXE/swap_resolver.vhd      ;         ;
+; ../Pipeline/EXE/suber.vhd              ; yes             ; User VHDL File               ; D:/Quartus Projects/VLSIProjekat_memory/Pipeline/EXE/suber.vhd              ;         ;
+; ../Pipeline/EXE/shifter.vhd            ; yes             ; User VHDL File               ; D:/Quartus Projects/VLSIProjekat_memory/Pipeline/EXE/shifter.vhd            ;         ;
+; ../Pipeline/EXE/reg_file_forwarder.vhd ; yes             ; User VHDL File               ; D:/Quartus Projects/VLSIProjekat_memory/Pipeline/EXE/reg_file_forwarder.vhd ;         ;
+; ../Pipeline/EXE/imm_handler.vhd        ; yes             ; User VHDL File               ; D:/Quartus Projects/VLSIProjekat_memory/Pipeline/EXE/imm_handler.vhd        ;         ;
+; ../Pipeline/EXE/exe_complete.vhd       ; yes             ; User VHDL File               ; D:/Quartus Projects/VLSIProjekat_memory/Pipeline/EXE/exe_complete.vhd       ;         ;
+; ../Pipeline/EXE/exe_block_decoder.vhd  ; yes             ; User VHDL File               ; D:/Quartus Projects/VLSIProjekat_memory/Pipeline/EXE/exe_block_decoder.vhd  ;         ;
+; ../Pipeline/EXE/csr.vhd                ; yes             ; User VHDL File               ; D:/Quartus Projects/VLSIProjekat_memory/Pipeline/EXE/csr.vhd                ;         ;
+; ../Pipeline/EXE/alu.vhd                ; yes             ; User VHDL File               ; D:/Quartus Projects/VLSIProjekat_memory/Pipeline/EXE/alu.vhd                ;         ;
+; ../Pipeline/EXE/adder.vhd              ; yes             ; User VHDL File               ; D:/Quartus Projects/VLSIProjekat_memory/Pipeline/EXE/adder.vhd              ;         ;
+; ../Pipeline/ID/register_file.vhd       ; yes             ; User VHDL File               ; D:/Quartus Projects/VLSIProjekat_memory/Pipeline/ID/register_file.vhd       ;         ;
+; ../Pipeline/ID/operation_decoder.vhd   ; yes             ; User VHDL File               ; D:/Quartus Projects/VLSIProjekat_memory/Pipeline/ID/operation_decoder.vhd   ;         ;
+; ../Pipeline/ID/instructions_types.vhd  ; yes             ; User VHDL File               ; D:/Quartus Projects/VLSIProjekat_memory/Pipeline/ID/instructions_types.vhd  ;         ;
+; ../Pipeline/ID/id_exe.vhd              ; yes             ; User VHDL File               ; D:/Quartus Projects/VLSIProjekat_memory/Pipeline/ID/id_exe.vhd              ;         ;
+; ../Pipeline/ID/id_complete.vhd         ; yes             ; User VHDL File               ; D:/Quartus Projects/VLSIProjekat_memory/Pipeline/ID/id_complete.vhd         ;         ;
+; ../Pipeline/IF/if_complete.vhd         ; yes             ; User VHDL File               ; D:/Quartus Projects/VLSIProjekat_memory/Pipeline/IF/if_complete.vhd         ;         ;
+; ../Cache/gmemory.vhd                   ; yes             ; User VHDL File               ; D:/Quartus Projects/VLSIProjekat_memory/Cache/gmemory.vhd                   ;         ;
+; ../Cache/cache.vhd                     ; yes             ; User VHDL File               ; D:/Quartus Projects/VLSIProjekat_memory/Cache/cache.vhd                     ;         ;
+; ../Cache/arbitrary.vhd                 ; yes             ; User VHDL File               ; D:/Quartus Projects/VLSIProjekat_memory/Cache/arbitrary.vhd                 ;         ;
+; cpu.vhd                                ; yes             ; User VHDL File               ; D:/Quartus Projects/VLSIProjekat_memory/Cpu/cpu.vhd                         ;         ;
+; ../Pipeline/EXE/load_store_unit.vhd    ; yes             ; User VHDL File               ; D:/Quartus Projects/VLSIProjekat_memory/Pipeline/EXE/load_store_unit.vhd    ;         ;
+; ../Pipeline/ID/check_load.vhd          ; yes             ; User VHDL File               ; D:/Quartus Projects/VLSIProjekat_memory/Pipeline/ID/check_load.vhd          ;         ;
+; ../Pipeline/ID/check_pc.vhd            ; yes             ; User VHDL File               ; D:/Quartus Projects/VLSIProjekat_memory/Pipeline/ID/check_pc.vhd            ;         ;
+; ../Pipeline/ID/bbl_handler.vhd         ; yes             ; User VHDL File               ; D:/Quartus Projects/VLSIProjekat_memory/Pipeline/ID/bbl_handler.vhd         ;         ;
+; ../Pipeline/EXE/stop_generator.vhd     ; yes             ; User VHDL File               ; D:/Quartus Projects/VLSIProjekat_memory/Pipeline/EXE/stop_generator.vhd     ;         ;
+; altsyncram.tdf                         ; yes             ; Megafunction                 ; d:/altera/13.0sp1/quartus/libraries/megafunctions/altsyncram.tdf            ;         ;
+; stratix_ram_block.inc                  ; yes             ; Megafunction                 ; d:/altera/13.0sp1/quartus/libraries/megafunctions/stratix_ram_block.inc     ;         ;
+; lpm_mux.inc                            ; yes             ; Megafunction                 ; d:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_mux.inc               ;         ;
+; lpm_decode.inc                         ; yes             ; Megafunction                 ; d:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_decode.inc            ;         ;
+; aglobal130.inc                         ; yes             ; Megafunction                 ; d:/altera/13.0sp1/quartus/libraries/megafunctions/aglobal130.inc            ;         ;
+; a_rdenreg.inc                          ; yes             ; Megafunction                 ; d:/altera/13.0sp1/quartus/libraries/megafunctions/a_rdenreg.inc             ;         ;
+; altrom.inc                             ; yes             ; Megafunction                 ; d:/altera/13.0sp1/quartus/libraries/megafunctions/altrom.inc                ;         ;
+; altram.inc                             ; yes             ; Megafunction                 ; d:/altera/13.0sp1/quartus/libraries/megafunctions/altram.inc                ;         ;
+; altdpram.inc                           ; yes             ; Megafunction                 ; d:/altera/13.0sp1/quartus/libraries/megafunctions/altdpram.inc              ;         ;
+; db/altsyncram_8og1.tdf                 ; yes             ; Auto-Generated Megafunction  ; D:/Quartus Projects/VLSIProjekat_memory/Cpu/db/altsyncram_8og1.tdf          ;         ;
++----------------------------------------+-----------------+------------------------------+-----------------------------------------------------------------------------+---------+
+
+
++-----------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary         ;
++---------------------------------------------+-------+
+; Resource                                    ; Usage ;
++---------------------------------------------+-------+
+; Estimated Total logic elements              ; 6,143 ;
+;                                             ;       ;
+; Total combinational functions               ; 5310  ;
+; Logic element usage by number of LUT inputs ;       ;
+;     -- 4 input functions                    ; 3733  ;
+;     -- 3 input functions                    ; 1301  ;
+;     -- <=2 input functions                  ; 276   ;
+;                                             ;       ;
+; Logic elements by mode                      ;       ;
+;     -- normal mode                          ; 5118  ;
+;     -- arithmetic mode                      ; 192   ;
+;                                             ;       ;
+; Total registers                             ; 1853  ;
+;     -- Dedicated logic registers            ; 1853  ;
+;     -- I/O registers                        ; 0     ;
+;                                             ;       ;
+; I/O pins                                    ; 70    ;
+; Total memory bits                           ; 4096  ;
+; Embedded Multiplier 9-bit elements          ; 0     ;
+; Maximum fan-out node                        ; clk   ;
+; Maximum fan-out                             ; 1917  ;
+; Total fan-out                               ; 26293 ;
+; Average fan-out                             ; 3.60  ;
++---------------------------------------------+-------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                               ;
++-------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node                      ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                  ; Library Name ;
++-------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------------------+--------------+
+; |cpu                                            ; 5310 (2)          ; 1853 (0)     ; 4096        ; 0            ; 0       ; 0         ; 70   ; 0            ; |cpu                                                                                                                 ; work         ;
+;    |arbiter:arbitrary|                          ; 3 (3)             ; 3 (3)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu|arbiter:arbitrary                                                                                               ; work         ;
+;    |exe_complete:exe_stage|                     ; 1153 (0)          ; 5 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu|exe_complete:exe_stage                                                                                          ; work         ;
+;       |alu:alu|                                 ; 284 (150)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu|exe_complete:exe_stage|alu:alu                                                                                  ; work         ;
+;          |adder:adc|                            ; 34 (34)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu|exe_complete:exe_stage|alu:alu|adder:adc                                                                        ; work         ;
+;          |adder:add|                            ; 33 (33)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu|exe_complete:exe_stage|alu:alu|adder:add                                                                        ; work         ;
+;          |suber:sbc|                            ; 34 (34)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu|exe_complete:exe_stage|alu:alu|suber:sbc                                                                        ; work         ;
+;          |suber:sub|                            ; 33 (33)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu|exe_complete:exe_stage|alu:alu|suber:sub                                                                        ; work         ;
+;       |csr:csr|                                 ; 29 (29)           ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu|exe_complete:exe_stage|csr:csr                                                                                  ; work         ;
+;       |exe_block_decoder:exe_decoder|           ; 45 (45)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu|exe_complete:exe_stage|exe_block_decoder:exe_decoder                                                            ; work         ;
+;       |imm_handler:imm_handler|                 ; 32 (32)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu|exe_complete:exe_stage|imm_handler:imm_handler                                                                  ; work         ;
+;       |reg_file_forwarder:reg_file_forward|     ; 77 (77)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu|exe_complete:exe_stage|reg_file_forwarder:reg_file_forward                                                      ; work         ;
+;       |shifter:shifter|                         ; 651 (651)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu|exe_complete:exe_stage|shifter:shifter                                                                          ; work         ;
+;       |stop_generator:stop_gen|                 ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu|exe_complete:exe_stage|stop_generator:stop_gen                                                                  ; work         ;
+;       |swap_resolver:resolver|                  ; 35 (35)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu|exe_complete:exe_stage|swap_resolver:resolver                                                                   ; work         ;
+;    |id_complete:id_stage|                       ; 3368 (36)         ; 1301 (0)     ; 2048        ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu|id_complete:id_stage                                                                                            ; work         ;
+;       |bbl_handler:bbl_handler|                 ; 43 (43)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu|id_complete:id_stage|bbl_handler:bbl_handler                                                                    ; work         ;
+;       |cache:data_cache|                        ; 1025 (993)        ; 628 (595)    ; 2048        ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu|id_complete:id_stage|cache:data_cache                                                                           ; work         ;
+;          |gmemory:data|                         ; 32 (32)           ; 33 (33)      ; 2048        ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu|id_complete:id_stage|cache:data_cache|gmemory:data                                                              ; work         ;
+;             |altsyncram:mem_reg[0][31]__1|      ; 0 (0)             ; 0 (0)        ; 2048        ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu|id_complete:id_stage|cache:data_cache|gmemory:data|altsyncram:mem_reg[0][31]__1                                 ; work         ;
+;                |altsyncram_8og1:auto_generated| ; 0 (0)             ; 0 (0)        ; 2048        ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu|id_complete:id_stage|cache:data_cache|gmemory:data|altsyncram:mem_reg[0][31]__1|altsyncram_8og1:auto_generated  ; work         ;
+;       |check_load_store:load_store|             ; 175 (175)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu|id_complete:id_stage|check_load_store:load_store                                                                ; work         ;
+;       |check_pc:pc_rd|                          ; 5 (5)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu|id_complete:id_stage|check_pc:pc_rd                                                                             ; work         ;
+;       |id_exe:id_exe|                           ; 771 (771)         ; 160 (160)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu|id_complete:id_stage|id_exe:id_exe                                                                              ; work         ;
+;       |operation_decoder:op_decoder|            ; 4 (4)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu|id_complete:id_stage|operation_decoder:op_decoder                                                               ; work         ;
+;       |register_file:reg_file|                  ; 1309 (1309)       ; 512 (512)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu|id_complete:id_stage|register_file:reg_file                                                                     ; work         ;
+;    |if_complete:if_stage|                       ; 784 (234)         ; 544 (0)      ; 2048        ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu|if_complete:if_stage                                                                                            ; work         ;
+;       |cache:instr_cache|                       ; 550 (550)         ; 544 (511)    ; 2048        ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu|if_complete:if_stage|cache:instr_cache                                                                          ; work         ;
+;          |gmemory:data|                         ; 0 (0)             ; 33 (33)      ; 2048        ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu|if_complete:if_stage|cache:instr_cache|gmemory:data                                                             ; work         ;
+;             |altsyncram:mem_reg[0][31]__1|      ; 0 (0)             ; 0 (0)        ; 2048        ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu|if_complete:if_stage|cache:instr_cache|gmemory:data|altsyncram:mem_reg[0][31]__1                                ; work         ;
+;                |altsyncram_8og1:auto_generated| ; 0 (0)             ; 0 (0)        ; 2048        ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu|if_complete:if_stage|cache:instr_cache|gmemory:data|altsyncram:mem_reg[0][31]__1|altsyncram_8og1:auto_generated ; work         ;
++-------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                                                               ;
++----------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
+; Name                                                                                                                       ; Type ; Mode             ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size ; MIF  ;
++----------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
+; id_complete:id_stage|cache:data_cache|gmemory:data|altsyncram:mem_reg[0][31]__1|altsyncram_8og1:auto_generated|ALTSYNCRAM  ; AUTO ; Simple Dual Port ; 64           ; 32           ; 64           ; 32           ; 2048 ; None ;
+; if_complete:if_stage|cache:instr_cache|gmemory:data|altsyncram:mem_reg[0][31]__1|altsyncram_8og1:auto_generated|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 64           ; 32           ; 64           ; 32           ; 2048 ; None ;
++----------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------+
+; State Machine - |cpu|arbiter:arbitrary|state_reg                         ;
++------------------+------------------+------------------+-----------------+
+; Name             ; state_reg.grant1 ; state_reg.grant0 ; state_reg.waitr ;
++------------------+------------------+------------------+-----------------+
+; state_reg.waitr  ; 0                ; 0                ; 0               ;
+; state_reg.grant0 ; 0                ; 1                ; 1               ;
+; state_reg.grant1 ; 1                ; 0                ; 1               ;
++------------------+------------------+------------------+-----------------+
+
+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |cpu|id_complete:id_stage|id_exe:id_exe|instr_type_out                                                                                                                                                 ;
++-----------------------------+-------------------------+-------------------------+------------------------+--------------------------+--------------------------+-------------------------+-----------------------------+
+; Name                        ; instr_type_out.STP~reg0 ; instr_type_out.BBL~reg0 ; instr_type_out.LS~reg0 ; instr_type_out.DP_I~reg0 ; instr_type_out.DP_R~reg0 ; instr_type_out.NOP~reg0 ; instr_type_out.INVALID~reg0 ;
++-----------------------------+-------------------------+-------------------------+------------------------+--------------------------+--------------------------+-------------------------+-----------------------------+
+; instr_type_out.INVALID~reg0 ; 0                       ; 0                       ; 0                      ; 0                        ; 0                        ; 0                       ; 0                           ;
+; instr_type_out.NOP~reg0     ; 0                       ; 0                       ; 0                      ; 0                        ; 0                        ; 1                       ; 1                           ;
+; instr_type_out.DP_R~reg0    ; 0                       ; 0                       ; 0                      ; 0                        ; 1                        ; 0                       ; 1                           ;
+; instr_type_out.DP_I~reg0    ; 0                       ; 0                       ; 0                      ; 1                        ; 0                        ; 0                       ; 1                           ;
+; instr_type_out.LS~reg0      ; 0                       ; 0                       ; 1                      ; 0                        ; 0                        ; 0                       ; 1                           ;
+; instr_type_out.BBL~reg0     ; 0                       ; 1                       ; 0                      ; 0                        ; 0                        ; 0                       ; 1                           ;
+; instr_type_out.STP~reg0     ; 1                       ; 0                       ; 0                      ; 0                        ; 0                        ; 0                       ; 1                           ;
++-----------------------------+-------------------------+-------------------------+------------------------+--------------------------+--------------------------+-------------------------+-----------------------------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |cpu|id_complete:id_stage|cache:data_cache|current_state                                                                                                                                                                                                                                                                                                 ;
++--------------------------------+----------------------------+---------------------------+---------------------------+----------------------------+--------------------------------+--------------------------------+-----------------------------+-------------------------------+-----------------------------+------------------------------+--------------------------+
+; Name                           ; current_state.ACK_WAIT_STP ; current_state.ACK_WAIT_WB ; current_state.ACK_WAIT_RM ; current_state.STOPED_STATE ; current_state.WAITING_WB_STATE ; current_state.WRITE_BACK_STATE ; current_state.EXECUTE_STATE ; current_state.READ_DBUS_STATE ; current_state.WAITING_STATE ; current_state.READ_MEM_STATE ; current_state.IDLE_STATE ;
++--------------------------------+----------------------------+---------------------------+---------------------------+----------------------------+--------------------------------+--------------------------------+-----------------------------+-------------------------------+-----------------------------+------------------------------+--------------------------+
+; current_state.IDLE_STATE       ; 0                          ; 0                         ; 0                         ; 0                          ; 0                              ; 0                              ; 0                           ; 0                             ; 0                           ; 0                            ; 0                        ;
+; current_state.READ_MEM_STATE   ; 0                          ; 0                         ; 0                         ; 0                          ; 0                              ; 0                              ; 0                           ; 0                             ; 0                           ; 1                            ; 1                        ;
+; current_state.WAITING_STATE    ; 0                          ; 0                         ; 0                         ; 0                          ; 0                              ; 0                              ; 0                           ; 0                             ; 1                           ; 0                            ; 1                        ;
+; current_state.READ_DBUS_STATE  ; 0                          ; 0                         ; 0                         ; 0                          ; 0                              ; 0                              ; 0                           ; 1                             ; 0                           ; 0                            ; 1                        ;
+; current_state.EXECUTE_STATE    ; 0                          ; 0                         ; 0                         ; 0                          ; 0                              ; 0                              ; 1                           ; 0                             ; 0                           ; 0                            ; 1                        ;
+; current_state.WRITE_BACK_STATE ; 0                          ; 0                         ; 0                         ; 0                          ; 0                              ; 1                              ; 0                           ; 0                             ; 0                           ; 0                            ; 1                        ;
+; current_state.WAITING_WB_STATE ; 0                          ; 0                         ; 0                         ; 0                          ; 1                              ; 0                              ; 0                           ; 0                             ; 0                           ; 0                            ; 1                        ;
+; current_state.STOPED_STATE     ; 0                          ; 0                         ; 0                         ; 1                          ; 0                              ; 0                              ; 0                           ; 0                             ; 0                           ; 0                            ; 1                        ;
+; current_state.ACK_WAIT_RM      ; 0                          ; 0                         ; 1                         ; 0                          ; 0                              ; 0                              ; 0                           ; 0                             ; 0                           ; 0                            ; 1                        ;
+; current_state.ACK_WAIT_WB      ; 0                          ; 1                         ; 0                         ; 0                          ; 0                              ; 0                              ; 0                           ; 0                             ; 0                           ; 0                            ; 1                        ;
+; current_state.ACK_WAIT_STP     ; 1                          ; 0                         ; 0                         ; 0                          ; 0                              ; 0                              ; 0                           ; 0                             ; 0                           ; 0                            ; 1                        ;
++--------------------------------+----------------------------+---------------------------+---------------------------+----------------------------+--------------------------------+--------------------------------+-----------------------------+-------------------------------+-----------------------------+------------------------------+--------------------------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |cpu|if_complete:if_stage|cache:instr_cache|current_state                                                                                                                                                                                                                                                                                                ;
++--------------------------------+----------------------------+---------------------------+---------------------------+----------------------------+--------------------------------+--------------------------------+-----------------------------+-------------------------------+-----------------------------+------------------------------+--------------------------+
+; Name                           ; current_state.ACK_WAIT_STP ; current_state.ACK_WAIT_WB ; current_state.ACK_WAIT_RM ; current_state.STOPED_STATE ; current_state.WAITING_WB_STATE ; current_state.WRITE_BACK_STATE ; current_state.EXECUTE_STATE ; current_state.READ_DBUS_STATE ; current_state.WAITING_STATE ; current_state.READ_MEM_STATE ; current_state.IDLE_STATE ;
++--------------------------------+----------------------------+---------------------------+---------------------------+----------------------------+--------------------------------+--------------------------------+-----------------------------+-------------------------------+-----------------------------+------------------------------+--------------------------+
+; current_state.IDLE_STATE       ; 0                          ; 0                         ; 0                         ; 0                          ; 0                              ; 0                              ; 0                           ; 0                             ; 0                           ; 0                            ; 0                        ;
+; current_state.READ_MEM_STATE   ; 0                          ; 0                         ; 0                         ; 0                          ; 0                              ; 0                              ; 0                           ; 0                             ; 0                           ; 1                            ; 1                        ;
+; current_state.WAITING_STATE    ; 0                          ; 0                         ; 0                         ; 0                          ; 0                              ; 0                              ; 0                           ; 0                             ; 1                           ; 0                            ; 1                        ;
+; current_state.READ_DBUS_STATE  ; 0                          ; 0                         ; 0                         ; 0                          ; 0                              ; 0                              ; 0                           ; 1                             ; 0                           ; 0                            ; 1                        ;
+; current_state.EXECUTE_STATE    ; 0                          ; 0                         ; 0                         ; 0                          ; 0                              ; 0                              ; 1                           ; 0                             ; 0                           ; 0                            ; 1                        ;
+; current_state.WRITE_BACK_STATE ; 0                          ; 0                         ; 0                         ; 0                          ; 0                              ; 1                              ; 0                           ; 0                             ; 0                           ; 0                            ; 1                        ;
+; current_state.WAITING_WB_STATE ; 0                          ; 0                         ; 0                         ; 0                          ; 1                              ; 0                              ; 0                           ; 0                             ; 0                           ; 0                            ; 1                        ;
+; current_state.STOPED_STATE     ; 0                          ; 0                         ; 0                         ; 1                          ; 0                              ; 0                              ; 0                           ; 0                             ; 0                           ; 0                            ; 1                        ;
+; current_state.ACK_WAIT_RM      ; 0                          ; 0                         ; 1                         ; 0                          ; 0                              ; 0                              ; 0                           ; 0                             ; 0                           ; 0                            ; 1                        ;
+; current_state.ACK_WAIT_WB      ; 0                          ; 1                         ; 0                         ; 0                          ; 0                              ; 0                              ; 0                           ; 0                             ; 0                           ; 0                            ; 1                        ;
+; current_state.ACK_WAIT_STP     ; 1                          ; 0                         ; 0                         ; 0                          ; 0                              ; 0                              ; 0                           ; 0                             ; 0                           ; 0                            ; 1                        ;
++--------------------------------+----------------------------+---------------------------+---------------------------+----------------------------+--------------------------------+--------------------------------+-----------------------------+-------------------------------+-----------------------------+------------------------------+--------------------------+
+
+
++------------------------------------------------------------+
+; Logic Cells Representing Combinational Loops               ;
++--------------------------------------------------------+---+
+; Logic Cell Name                                        ;   ;
++--------------------------------------------------------+---+
+; if_complete:if_stage|cache:instr_cache|Selector102~0   ;   ;
+; Number of logic cells representing combinational loops ; 1 ;
++--------------------------------------------------------+---+
+Note: All cells listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                                    ;
++-----------------------------------------------------------------------+-------------------------------------------------------------------------------+
+; Register name                                                         ; Reason for Removal                                                            ;
++-----------------------------------------------------------------------+-------------------------------------------------------------------------------+
+; id_complete:id_stage|id_exe:id_exe|ir_out[2]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|ir_out[1]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|ir_out[0]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|ir_out[3]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|ir_out[4]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|ir_out[5]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|ir_out[6]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|ir_out[7]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|ir_out[8]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|ir_out[9]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|ir_out[10]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|ir_out[11]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|ir_out[12]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|ir_out[13]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|ir_out[14]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|ir_out[15]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|ir_out[16]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|ir_out[17]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|ir_out[18]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|ir_out[19]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|ir_out[20]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|ir_out[21]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|ir_out[22]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|ir_out[23]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|ir_out[24]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|ir_out[25]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|ir_out[26]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|ir_out[27]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|ir_out[28]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rs_out[0]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rs_out[1]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rs_out[2]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rs_out[3]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rs_out[4]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rs_out[5]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rs_out[6]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rs_out[7]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rs_out[8]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rs_out[9]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rs_out[10]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rs_out[11]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rs_out[12]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rs_out[13]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rs_out[14]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rs_out[15]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rs_out[16]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rs_out[17]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rs_out[18]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rs_out[19]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rs_out[20]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rs_out[21]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rs_out[22]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rs_out[23]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rs_out[24]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rs_out[25]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rs_out[26]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rs_out[27]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rs_out[28]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rs_out[29]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rs_out[30]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rm_out[0]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rm_out[1]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rm_out[2]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rm_out[3]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rm_out[4]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rm_out[5]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rm_out[6]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rm_out[7]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rm_out[8]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rm_out[9]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rm_out[10]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rm_out[11]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rm_out[12]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rm_out[13]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rm_out[14]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rm_out[15]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rm_out[16]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rm_out[17]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rm_out[18]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rm_out[19]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rm_out[20]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rm_out[21]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rm_out[22]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rm_out[23]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rm_out[24]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rm_out[25]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rm_out[26]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rm_out[27]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rm_out[28]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rm_out[29]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rm_out[30]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rm_out[31]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rd_out[0]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rd_out[1]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rd_out[2]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rd_out[3]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rd_out[4]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rd_out[5]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rd_out[6]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rd_out[7]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rd_out[8]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rd_out[9]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rd_out[10]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rd_out[11]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rd_out[12]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rd_out[13]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rd_out[14]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rd_out[15]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rd_out[16]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rd_out[17]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rd_out[18]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rd_out[19]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rd_out[20]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rd_out[21]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rd_out[22]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rd_out[23]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rd_out[24]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rd_out[25]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rd_out[26]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rd_out[27]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rd_out[28]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rd_out[29]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rd_out[30]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rd_out[31]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rn_out[0]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rn_out[1]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rn_out[2]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rn_out[3]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rn_out[4]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rn_out[5]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rn_out[6]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rn_out[7]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rn_out[8]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rn_out[9]~en                       ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rn_out[10]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rn_out[11]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rn_out[12]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rn_out[13]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rn_out[14]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rn_out[15]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rn_out[16]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rn_out[17]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rn_out[18]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rn_out[19]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rn_out[20]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rn_out[21]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rn_out[22]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rn_out[23]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rn_out[24]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rn_out[25]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rn_out[26]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rn_out[27]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rn_out[28]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rn_out[29]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rn_out[30]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|rn_out[31]~en                      ; Lost fanout                                                                   ;
+; id_complete:id_stage|cache:data_cache|stop_reg                        ; Stuck at VCC due to stuck port data_in                                        ;
+; if_complete:if_stage|cache:instr_cache|cpu_wr_reg                     ; Stuck at GND due to stuck port data_in                                        ;
+; if_complete:if_stage|cache:instr_cache|stop_reg                       ; Stuck at VCC due to stuck port data_in                                        ;
+; if_complete:if_stage|cache:instr_cache|cpu_data_in_reg[0..31]         ; Lost fanout                                                                   ;
+; if_complete:if_stage|cache:instr_cache|dirty[0..15]                   ; Stuck at GND due to stuck port data_in                                        ;
+; if_complete:if_stage|cache:instr_cache|entry_reg[0..2]                ; Merged with if_complete:if_stage|cache:instr_cache|entry_reg[3]               ;
+; if_complete:if_stage|cache:instr_cache|entry_tag_reg[0..25]           ; Merged with if_complete:if_stage|cache:instr_cache|entry_reg[3]               ;
+; if_complete:if_stage|cache:instr_cache|entry_reg[3]                   ; Stuck at GND due to stuck port data_in                                        ;
+; id_complete:id_stage|id_exe:id_exe|instr_type_out.INVALID~reg0        ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|instr_type_out.NOP~reg0            ; Lost fanout                                                                   ;
+; id_complete:id_stage|id_exe:id_exe|instr_type_out.BBL~reg0            ; Lost fanout                                                                   ;
+; if_complete:if_stage|cache:instr_cache|current_state.ACK_WAIT_WB      ; Merged with if_complete:if_stage|cache:instr_cache|current_state.ACK_WAIT_STP ;
+; if_complete:if_stage|cache:instr_cache|current_state.ACK_WAIT_STP     ; Stuck at GND due to stuck port data_in                                        ;
+; if_complete:if_stage|cache:instr_cache|current_state.WRITE_BACK_STATE ; Stuck at GND due to stuck port data_in                                        ;
+; if_complete:if_stage|cache:instr_cache|current_state.WAITING_WB_STATE ; Stuck at GND due to stuck port data_in                                        ;
+; Total Number of Removed Registers = 244                               ;                                                                               ;
++-----------------------------------------------------------------------+-------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                 ;
++---------------------------------------------------+---------------------------+-------------------------------------------------------------+
+; Register name                                     ; Reason for Removal        ; Registers Removed due to This Register                      ;
++---------------------------------------------------+---------------------------+-------------------------------------------------------------+
+; if_complete:if_stage|cache:instr_cache|cpu_wr_reg ; Stuck at GND              ; if_complete:if_stage|cache:instr_cache|cpu_data_in_reg[31], ;
+;                                                   ; due to stuck port data_in ; if_complete:if_stage|cache:instr_cache|cpu_data_in_reg[30], ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|cpu_data_in_reg[29], ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|cpu_data_in_reg[28], ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|cpu_data_in_reg[27], ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|cpu_data_in_reg[26], ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|cpu_data_in_reg[25], ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|cpu_data_in_reg[24], ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|cpu_data_in_reg[23], ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|cpu_data_in_reg[22], ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|cpu_data_in_reg[21], ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|cpu_data_in_reg[20], ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|cpu_data_in_reg[19], ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|cpu_data_in_reg[18], ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|cpu_data_in_reg[17], ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|cpu_data_in_reg[16], ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|cpu_data_in_reg[15], ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|cpu_data_in_reg[14], ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|cpu_data_in_reg[13], ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|cpu_data_in_reg[12], ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|cpu_data_in_reg[11], ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|cpu_data_in_reg[10], ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|cpu_data_in_reg[9],  ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|cpu_data_in_reg[8],  ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|cpu_data_in_reg[7],  ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|cpu_data_in_reg[6],  ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|cpu_data_in_reg[5],  ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|cpu_data_in_reg[4],  ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|cpu_data_in_reg[3],  ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|cpu_data_in_reg[2],  ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|cpu_data_in_reg[1],  ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|cpu_data_in_reg[0],  ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|dirty[15],           ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|dirty[14],           ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|dirty[13],           ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|dirty[12],           ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|dirty[11],           ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|dirty[10],           ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|dirty[9],            ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|dirty[8],            ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|dirty[7],            ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|dirty[6],            ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|dirty[5],            ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|dirty[4],            ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|dirty[3],            ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|dirty[2],            ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|dirty[1],            ;
+;                                                   ;                           ; if_complete:if_stage|cache:instr_cache|dirty[0]             ;
++---------------------------------------------------+---------------------------+-------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 1853  ;
+; Number of registers using Synchronous Clear  ; 1     ;
+; Number of registers using Synchronous Load   ; 128   ;
+; Number of registers using Asynchronous Clear ; 593   ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 1652  ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                            ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                  ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------+
+; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |cpu|id_complete:id_stage|cache:data_cache|cpu_addr_reg[22]                 ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; Yes        ; |cpu|id_complete:id_stage|id_exe:id_exe|rn_out[1]~reg0                      ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; Yes        ; |cpu|id_complete:id_stage|id_exe:id_exe|rd_out[8]~reg0                      ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |cpu|id_complete:id_stage|register_file:reg_file|registers[14][6]           ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |cpu|id_complete:id_stage|register_file:reg_file|registers[13][12]          ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |cpu|id_complete:id_stage|register_file:reg_file|registers[12][26]          ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |cpu|id_complete:id_stage|register_file:reg_file|registers[11][8]           ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |cpu|id_complete:id_stage|register_file:reg_file|registers[10][17]          ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |cpu|id_complete:id_stage|register_file:reg_file|registers[9][22]           ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |cpu|id_complete:id_stage|register_file:reg_file|registers[8][23]           ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |cpu|id_complete:id_stage|register_file:reg_file|registers[7][31]           ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |cpu|id_complete:id_stage|register_file:reg_file|registers[6][18]           ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |cpu|id_complete:id_stage|register_file:reg_file|registers[5][29]           ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |cpu|id_complete:id_stage|register_file:reg_file|registers[4][25]           ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |cpu|id_complete:id_stage|register_file:reg_file|registers[3][30]           ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |cpu|id_complete:id_stage|register_file:reg_file|registers[2][27]           ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |cpu|id_complete:id_stage|register_file:reg_file|registers[1][9]            ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |cpu|id_complete:id_stage|register_file:reg_file|registers[0][13]           ;
+; 18:1               ; 31 bits   ; 372 LEs       ; 372 LEs              ; 0 LEs                  ; Yes        ; |cpu|id_complete:id_stage|id_exe:id_exe|rs_out[1]~reg0                      ;
+; 18:1               ; 32 bits   ; 384 LEs       ; 384 LEs              ; 0 LEs                  ; Yes        ; |cpu|id_complete:id_stage|id_exe:id_exe|rm_out[17]~reg0                     ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |cpu|id_complete:id_stage|cache:data_cache|entry_reg[3]                     ;
+; 9:1                ; 4 bits    ; 24 LEs        ; 8 LEs                ; 16 LEs                 ; Yes        ; |cpu|id_complete:id_stage|cache:data_cache|mem_wait_for[0]                  ;
+; 9:1                ; 4 bits    ; 24 LEs        ; 8 LEs                ; 16 LEs                 ; Yes        ; |cpu|if_complete:if_stage|cache:instr_cache|mem_wait_for[1]                 ;
+; 22:1               ; 26 bits   ; 364 LEs       ; 286 LEs              ; 78 LEs                 ; Yes        ; |cpu|id_complete:id_stage|cache:data_cache|entry_tag_reg[23]                ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |cpu|id_complete:id_stage|register_file:reg_file|registers[15][17]          ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 4 LEs                ; 6 LEs                  ; Yes        ; |cpu|id_complete:id_stage|cache:data_cache|words_counter[0]                 ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 4 LEs                ; 6 LEs                  ; Yes        ; |cpu|if_complete:if_stage|cache:instr_cache|words_counter[0]                ;
+; 3:1                ; 36 bits   ; 72 LEs        ; 36 LEs               ; 36 LEs                 ; No         ; |cpu|exe_complete:exe_stage|load_store_unit:load_store_u|reg_out[26]        ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |cpu|exe_complete:exe_stage|imm_handler:imm_handler|imm_handler_out[10]     ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; No         ; |cpu|id_complete:id_stage|check_load_store:load_store|cache_rd              ;
+; 3:1                ; 36 bits   ; 72 LEs        ; 36 LEs               ; 36 LEs                 ; No         ; |cpu|exe_complete:exe_stage|reg_file_forwarder:reg_file_forward|reg_no_b[1] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; No         ; |cpu|id_complete:id_stage|cache:data_cache|next_state                       ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |cpu|exe_complete:exe_stage|csr:csr|input[31]                               ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; No         ; |cpu|id_complete:id_stage|bbl_handler:bbl_handler|link_reg[24]              ;
+; 16:1               ; 32 bits   ; 320 LEs       ; 320 LEs              ; 0 LEs                  ; No         ; |cpu|id_complete:id_stage|register_file:reg_file|Mux31                      ;
+; 9:1                ; 32 bits   ; 192 LEs       ; 128 LEs              ; 64 LEs                 ; No         ; |cpu|exe_complete:exe_stage|alu:alu|Mux19                                   ;
+; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; No         ; |cpu|id_complete:id_stage|check_load_store:load_store|cache_addr[17]        ;
+; 16:1               ; 28 bits   ; 280 LEs       ; 280 LEs              ; 0 LEs                  ; No         ; |cpu|id_complete:id_stage|cache:data_cache|Mux12                            ;
+; 16:1               ; 27 bits   ; 270 LEs       ; 270 LEs              ; 0 LEs                  ; No         ; |cpu|if_complete:if_stage|cache:instr_cache|Mux19                           ;
+; 16:1               ; 32 bits   ; 320 LEs       ; 320 LEs              ; 0 LEs                  ; No         ; |cpu|id_complete:id_stage|register_file:reg_file|Mux63                      ;
+; 6:1                ; 32 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; No         ; |cpu|id_complete:id_stage|check_load_store:load_store|cache_data[27]        ;
+; 8:1                ; 32 bits   ; 160 LEs       ; 96 LEs               ; 64 LEs                 ; No         ; |cpu|id_complete:id_stage|cache:data_cache|Selector82                       ;
+; 10:1               ; 2 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; No         ; |cpu|if_complete:if_stage|cache:instr_cache|Selector56                      ;
+; 10:1               ; 2 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; No         ; |cpu|id_complete:id_stage|cache:data_cache|Selector56                       ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 160 LEs              ; 64 LEs                 ; No         ; |cpu|if_complete:if_stage|cache_addr                                        ;
+; 12:1               ; 4 bits    ; 32 LEs        ; 12 LEs               ; 20 LEs                 ; No         ; |cpu|if_complete:if_stage|cache:instr_cache|Selector52                      ;
+; 16:1               ; 14 bits   ; 140 LEs       ; 84 LEs               ; 56 LEs                 ; No         ; |cpu|exe_complete:exe_stage|shifter:shifter|shifter_out[23]                 ;
+; 16:1               ; 14 bits   ; 140 LEs       ; 84 LEs               ; 56 LEs                 ; No         ; |cpu|exe_complete:exe_stage|shifter:shifter|shifter_out[4]                  ;
+; 19:1               ; 4 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; No         ; |cpu|id_complete:id_stage|cache:data_cache|Selector53                       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for if_complete:if_stage|cache:instr_cache|gmemory:data|altsyncram:mem_reg[0][31]__1|altsyncram_8og1:auto_generated ;
++---------------------------------+--------------------+------+--------------------------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                                       ;
++---------------------------------+--------------------+------+--------------------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                                        ;
++---------------------------------+--------------------+------+--------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for id_complete:id_stage|cache:data_cache|gmemory:data|altsyncram:mem_reg[0][31]__1|altsyncram_8og1:auto_generated ;
++---------------------------------+--------------------+------+-------------------------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                                      ;
++---------------------------------+--------------------+------+-------------------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                                       ;
++---------------------------------+--------------------+------+-------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: if_complete:if_stage|cache:instr_cache ;
++----------------+-------+------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                       ;
++----------------+-------+------------------------------------------------------------+
+; k              ; 4     ; Signed Integer                                             ;
+; l              ; 2     ; Signed Integer                                             ;
++----------------+-------+------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: if_complete:if_stage|cache:instr_cache|gmemory:data ;
++----------------+-------+-------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                    ;
++----------------+-------+-------------------------------------------------------------------------+
+; tcq            ; 0 fs  ; Physical                                                                ;
+; address_width  ; 6     ; Signed Integer                                                          ;
+; data_width     ; 32    ; Signed Integer                                                          ;
++----------------+-------+-------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: if_complete:if_stage|cache:instr_cache|gmemory:data|altsyncram:mem_reg[0][31]__1 ;
++------------------------------------+----------------------+-------------------------------------------------------------------+
+; Parameter Name                     ; Value                ; Type                                                              ;
++------------------------------------+----------------------+-------------------------------------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                                                           ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                                                        ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                                                      ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                                                      ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                                                    ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                                                           ;
+; OPERATION_MODE                     ; DUAL_PORT            ; Untyped                                                           ;
+; WIDTH_A                            ; 32                   ; Untyped                                                           ;
+; WIDTHAD_A                          ; 6                    ; Untyped                                                           ;
+; NUMWORDS_A                         ; 64                   ; Untyped                                                           ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                                                           ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                                                           ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                                                           ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                                                           ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                                                           ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                                                           ;
+; WIDTH_B                            ; 32                   ; Untyped                                                           ;
+; WIDTHAD_B                          ; 6                    ; Untyped                                                           ;
+; NUMWORDS_B                         ; 64                   ; Untyped                                                           ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                                                           ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                                                           ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                                                           ;
+; ADDRESS_REG_B                      ; CLOCK0               ; Untyped                                                           ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                                                           ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                                                           ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                                                           ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                                                           ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                                                           ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                                                           ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                                                           ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                                                           ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Untyped                                                           ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                                                           ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                                                           ;
+; BYTE_SIZE                          ; 8                    ; Untyped                                                           ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; OLD_DATA             ; Untyped                                                           ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                                                           ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                                                           ;
+; INIT_FILE                          ; UNUSED               ; Untyped                                                           ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                                                           ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                                                           ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped                                                           ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                                                           ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped                                                           ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                                                           ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                                                           ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                                                           ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                                                           ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                                                           ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                                                           ;
+; DEVICE_FAMILY                      ; Cyclone II           ; Untyped                                                           ;
+; CBXI_PARAMETER                     ; altsyncram_8og1      ; Untyped                                                           ;
++------------------------------------+----------------------+-------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: id_complete:id_stage|cache:data_cache ;
++----------------+-------+-----------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                      ;
++----------------+-------+-----------------------------------------------------------+
+; k              ; 4     ; Signed Integer                                            ;
+; l              ; 2     ; Signed Integer                                            ;
++----------------+-------+-----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: id_complete:id_stage|cache:data_cache|gmemory:data ;
++----------------+-------+------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                   ;
++----------------+-------+------------------------------------------------------------------------+
+; tcq            ; 0 fs  ; Physical                                                               ;
+; address_width  ; 6     ; Signed Integer                                                         ;
+; data_width     ; 32    ; Signed Integer                                                         ;
++----------------+-------+------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: id_complete:id_stage|cache:data_cache|gmemory:data|altsyncram:mem_reg[0][31]__1 ;
++------------------------------------+----------------------+------------------------------------------------------------------+
+; Parameter Name                     ; Value                ; Type                                                             ;
++------------------------------------+----------------------+------------------------------------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                                                          ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                                                       ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                                                     ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                                                     ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                                                   ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                                                          ;
+; OPERATION_MODE                     ; DUAL_PORT            ; Untyped                                                          ;
+; WIDTH_A                            ; 32                   ; Untyped                                                          ;
+; WIDTHAD_A                          ; 6                    ; Untyped                                                          ;
+; NUMWORDS_A                         ; 64                   ; Untyped                                                          ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                                                          ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                                                          ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                                                          ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                                                          ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                                                          ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                                                          ;
+; WIDTH_B                            ; 32                   ; Untyped                                                          ;
+; WIDTHAD_B                          ; 6                    ; Untyped                                                          ;
+; NUMWORDS_B                         ; 64                   ; Untyped                                                          ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                                                          ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                                                          ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                                                          ;
+; ADDRESS_REG_B                      ; CLOCK0               ; Untyped                                                          ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                                                          ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                                                          ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                                                          ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                                                          ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                                                          ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                                                          ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                                                          ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                                                          ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Untyped                                                          ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                                                          ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                                                          ;
+; BYTE_SIZE                          ; 8                    ; Untyped                                                          ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; OLD_DATA             ; Untyped                                                          ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                                                          ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                                                          ;
+; INIT_FILE                          ; UNUSED               ; Untyped                                                          ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                                                          ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                                                          ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped                                                          ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                                                          ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped                                                          ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                                                          ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                                                          ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                                                          ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                                                          ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                                                          ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                                                          ;
+; DEVICE_FAMILY                      ; Cyclone II           ; Untyped                                                          ;
+; CBXI_PARAMETER                     ; altsyncram_8og1      ; Untyped                                                          ;
++------------------------------------+----------------------+------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------------------------------+
+; altsyncram Parameter Settings by Entity Instance                                                                             ;
++-------------------------------------------+----------------------------------------------------------------------------------+
+; Name                                      ; Value                                                                            ;
++-------------------------------------------+----------------------------------------------------------------------------------+
+; Number of entity instances                ; 2                                                                                ;
+; Entity Instance                           ; if_complete:if_stage|cache:instr_cache|gmemory:data|altsyncram:mem_reg[0][31]__1 ;
+;     -- OPERATION_MODE                     ; DUAL_PORT                                                                        ;
+;     -- WIDTH_A                            ; 32                                                                               ;
+;     -- NUMWORDS_A                         ; 64                                                                               ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                                     ;
+;     -- WIDTH_B                            ; 32                                                                               ;
+;     -- NUMWORDS_B                         ; 64                                                                               ;
+;     -- ADDRESS_REG_B                      ; CLOCK0                                                                           ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                                     ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                                                             ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; OLD_DATA                                                                         ;
+; Entity Instance                           ; id_complete:id_stage|cache:data_cache|gmemory:data|altsyncram:mem_reg[0][31]__1  ;
+;     -- OPERATION_MODE                     ; DUAL_PORT                                                                        ;
+;     -- WIDTH_A                            ; 32                                                                               ;
+;     -- NUMWORDS_A                         ; 64                                                                               ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                                     ;
+;     -- WIDTH_B                            ; 32                                                                               ;
+;     -- NUMWORDS_B                         ; 64                                                                               ;
+;     -- ADDRESS_REG_B                      ; CLOCK0                                                                           ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                                     ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                                                             ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; OLD_DATA                                                                         ;
++-------------------------------------------+----------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------+
+; Port Connectivity Checks: "exe_complete:exe_stage|alu:alu|adder:add" ;
++------+-------+----------+--------------------------------------------+
+; Port ; Type  ; Severity ; Details                                    ;
++------+-------+----------+--------------------------------------------+
+; cin  ; Input ; Info     ; Stuck at GND                               ;
++------+-------+----------+--------------------------------------------+
+
+
++----------------------------------------------------------------------+
+; Port Connectivity Checks: "exe_complete:exe_stage|alu:alu|suber:sub" ;
++------+-------+----------+--------------------------------------------+
+; Port ; Type  ; Severity ; Details                                    ;
++------+-------+----------+--------------------------------------------+
+; cin  ; Input ; Info     ; Stuck at GND                               ;
++------+-------+----------+--------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "exe_complete:exe_stage|csr:csr"                                                                ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port            ; Type   ; Severity ; Details                                                                             ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; csr_out[31..30] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; csr_out[27..0]  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "if_complete:if_stage|cache:instr_cache"                                                     ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port         ; Type   ; Severity ; Details                                                                             ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+; cpu_wr       ; Input  ; Info     ; Stuck at GND                                                                        ;
+; mem_write    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; check_status ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:24     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 64-Bit Analysis & Synthesis
+    Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+    Info: Processing started: Wed Aug 27 18:44:49 2014
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off CPU -c CPU
+Warning (20028): Parallel compilation is not licensed and has been disabled
+Info (12021): Found 2 design units, including 1 entities, in source file /quartus projects/vlsiprojekat_memory/pipeline/exe/swap_resolver.vhd
+    Info (12022): Found design unit 1: swap_resolver-swap_resolver_behave
+    Info (12023): Found entity 1: swap_resolver
+Info (12021): Found 2 design units, including 1 entities, in source file /quartus projects/vlsiprojekat_memory/pipeline/exe/suber.vhd
+    Info (12022): Found design unit 1: suber-suber_behave
+    Info (12023): Found entity 1: suber
+Info (12021): Found 2 design units, including 1 entities, in source file /quartus projects/vlsiprojekat_memory/pipeline/exe/shifter.vhd
+    Info (12022): Found design unit 1: shifter-shifter_behave
+    Info (12023): Found entity 1: shifter
+Info (12021): Found 2 design units, including 1 entities, in source file /quartus projects/vlsiprojekat_memory/pipeline/exe/reg_file_forwarder.vhd
+    Info (12022): Found design unit 1: reg_file_forwarder-reg_file_forwarder_behave
+    Info (12023): Found entity 1: reg_file_forwarder
+Info (12021): Found 2 design units, including 1 entities, in source file /quartus projects/vlsiprojekat_memory/pipeline/exe/imm_handler.vhd
+    Info (12022): Found design unit 1: imm_handler-imm_handler_behave
+    Info (12023): Found entity 1: imm_handler
+Info (12021): Found 2 design units, including 1 entities, in source file /quartus projects/vlsiprojekat_memory/pipeline/exe/exe_complete.vhd
+    Info (12022): Found design unit 1: exe_complete-exe_complete_behave
+    Info (12023): Found entity 1: exe_complete
+Info (12021): Found 2 design units, including 1 entities, in source file /quartus projects/vlsiprojekat_memory/pipeline/exe/exe_block_decoder.vhd
+    Info (12022): Found design unit 1: exe_block_decoder-exe_block_decoder_behave
+    Info (12023): Found entity 1: exe_block_decoder
+Info (12021): Found 2 design units, including 1 entities, in source file /quartus projects/vlsiprojekat_memory/pipeline/exe/csr.vhd
+    Info (12022): Found design unit 1: csr-csr_behave
+    Info (12023): Found entity 1: csr
+Info (12021): Found 2 design units, including 1 entities, in source file /quartus projects/vlsiprojekat_memory/pipeline/exe/alu.vhd
+    Info (12022): Found design unit 1: alu-alu_behave
+    Info (12023): Found entity 1: alu
+Info (12021): Found 2 design units, including 1 entities, in source file /quartus projects/vlsiprojekat_memory/pipeline/exe/adder.vhd
+    Info (12022): Found design unit 1: adder-adder_behave
+    Info (12023): Found entity 1: adder
+Info (12021): Found 2 design units, including 1 entities, in source file /quartus projects/vlsiprojekat_memory/pipeline/id/register_file.vhd
+    Info (12022): Found design unit 1: register_file-register_file_behave
+    Info (12023): Found entity 1: register_file
+Info (12021): Found 2 design units, including 1 entities, in source file /quartus projects/vlsiprojekat_memory/pipeline/id/operation_decoder.vhd
+    Info (12022): Found design unit 1: operation_decoder-operation_decoder_behave
+    Info (12023): Found entity 1: operation_decoder
+Info (12021): Found 1 design units, including 0 entities, in source file /quartus projects/vlsiprojekat_memory/pipeline/id/instructions_types.vhd
+    Info (12022): Found design unit 1: instructions_types
+Info (12021): Found 2 design units, including 1 entities, in source file /quartus projects/vlsiprojekat_memory/pipeline/id/id_exe.vhd
+    Info (12022): Found design unit 1: id_exe-id_exe_behave
+    Info (12023): Found entity 1: id_exe
+Info (12021): Found 2 design units, including 1 entities, in source file /quartus projects/vlsiprojekat_memory/pipeline/id/id_complete.vhd
+    Info (12022): Found design unit 1: id_complete-id_complete_behave
+    Info (12023): Found entity 1: id_complete
+Info (12021): Found 2 design units, including 1 entities, in source file /quartus projects/vlsiprojekat_memory/pipeline/if/if_complete.vhd
+    Info (12022): Found design unit 1: if_complete-if_complete_behave
+    Info (12023): Found entity 1: if_complete
+Info (12021): Found 2 design units, including 1 entities, in source file /quartus projects/vlsiprojekat_memory/cache/gmemory.vhd
+    Info (12022): Found design unit 1: gmemory-gmemory_behave
+    Info (12023): Found entity 1: gmemory
+Info (12021): Found 2 design units, including 1 entities, in source file /quartus projects/vlsiprojekat_memory/cache/cache.vhd
+    Info (12022): Found design unit 1: cache-cache_behave
+    Info (12023): Found entity 1: cache
+Info (12021): Found 2 design units, including 1 entities, in source file /quartus projects/vlsiprojekat_memory/cache/arbitrary.vhd
+    Info (12022): Found design unit 1: arbiter-arbiter_arch
+    Info (12023): Found entity 1: arbiter
+Info (12021): Found 2 design units, including 1 entities, in source file cpu.vhd
+    Info (12022): Found design unit 1: cpu-cpu_behave
+    Info (12023): Found entity 1: cpu
+Info (12021): Found 2 design units, including 1 entities, in source file /quartus projects/vlsiprojekat_memory/pipeline/exe/load_store_unit.vhd
+    Info (12022): Found design unit 1: load_store_unit-load_store_unit_behave
+    Info (12023): Found entity 1: load_store_unit
+Info (12021): Found 2 design units, including 1 entities, in source file /quartus projects/vlsiprojekat_memory/pipeline/id/check_load.vhd
+    Info (12022): Found design unit 1: check_load_store-check_load_store_behave
+    Info (12023): Found entity 1: check_load_store
+Info (12021): Found 2 design units, including 1 entities, in source file /quartus projects/vlsiprojekat_memory/pipeline/id/check_pc.vhd
+    Info (12022): Found design unit 1: check_pc-check_pc_behave
+    Info (12023): Found entity 1: check_pc
+Info (12021): Found 2 design units, including 1 entities, in source file /quartus projects/vlsiprojekat_memory/pipeline/id/bbl_handler.vhd
+    Info (12022): Found design unit 1: bbl_handler-bbl_handler_behave
+    Info (12023): Found entity 1: bbl_handler
+Info (12021): Found 2 design units, including 1 entities, in source file /quartus projects/vlsiprojekat_memory/pipeline/exe/stop_generator.vhd
+    Info (12022): Found design unit 1: stop_generator-stop_generator_behave
+    Info (12023): Found entity 1: stop_generator
+Info (12127): Elaborating entity "CPU" for the top level hierarchy
+Info (12128): Elaborating entity "if_complete" for hierarchy "if_complete:if_stage"
+Warning (10492): VHDL Process Statement warning at if_complete.vhd(87): signal "req_signal" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Info (12128): Elaborating entity "cache" for hierarchy "if_complete:if_stage|cache:instr_cache"
+Info (12128): Elaborating entity "gmemory" for hierarchy "if_complete:if_stage|cache:instr_cache|gmemory:data"
+Info (12128): Elaborating entity "altsyncram" for hierarchy "if_complete:if_stage|cache:instr_cache|gmemory:data|altsyncram:mem_reg[0][31]__1"
+Info (12130): Elaborated megafunction instantiation "if_complete:if_stage|cache:instr_cache|gmemory:data|altsyncram:mem_reg[0][31]__1"
+Info (12133): Instantiated megafunction "if_complete:if_stage|cache:instr_cache|gmemory:data|altsyncram:mem_reg[0][31]__1" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "32"
+    Info (12134): Parameter "WIDTHAD_A" = "6"
+    Info (12134): Parameter "NUMWORDS_A" = "64"
+    Info (12134): Parameter "WIDTH_B" = "32"
+    Info (12134): Parameter "WIDTHAD_B" = "6"
+    Info (12134): Parameter "NUMWORDS_B" = "64"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK0"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+    Info (12134): Parameter "READ_DURING_WRITE_MODE_MIXED_PORTS" = "OLD_DATA"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_8og1.tdf
+    Info (12023): Found entity 1: altsyncram_8og1
+Info (12128): Elaborating entity "altsyncram_8og1" for hierarchy "if_complete:if_stage|cache:instr_cache|gmemory:data|altsyncram:mem_reg[0][31]__1|altsyncram_8og1:auto_generated"
+Info (12128): Elaborating entity "id_complete" for hierarchy "id_complete:id_stage"
+Info (12128): Elaborating entity "check_pc" for hierarchy "id_complete:id_stage|check_pc:pc_rd"
+Info (12128): Elaborating entity "register_file" for hierarchy "id_complete:id_stage|register_file:reg_file"
+Info (12128): Elaborating entity "operation_decoder" for hierarchy "id_complete:id_stage|operation_decoder:op_decoder"
+Info (12128): Elaborating entity "bbl_handler" for hierarchy "id_complete:id_stage|bbl_handler:bbl_handler"
+Warning (10492): VHDL Process Statement warning at bbl_handler.vhd(61): signal "pc" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at bbl_handler.vhd(70): signal "pc" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Info (12128): Elaborating entity "check_load_store" for hierarchy "id_complete:id_stage|check_load_store:load_store"
+Info (12128): Elaborating entity "id_exe" for hierarchy "id_complete:id_stage|id_exe:id_exe"
+Info (12128): Elaborating entity "exe_complete" for hierarchy "exe_complete:exe_stage"
+Info (12128): Elaborating entity "stop_generator" for hierarchy "exe_complete:exe_stage|stop_generator:stop_gen"
+Info (12128): Elaborating entity "exe_block_decoder" for hierarchy "exe_complete:exe_stage|exe_block_decoder:exe_decoder"
+Info (12128): Elaborating entity "shifter" for hierarchy "exe_complete:exe_stage|shifter:shifter"
+Info (12128): Elaborating entity "imm_handler" for hierarchy "exe_complete:exe_stage|imm_handler:imm_handler"
+Info (12128): Elaborating entity "csr" for hierarchy "exe_complete:exe_stage|csr:csr"
+Info (12128): Elaborating entity "alu" for hierarchy "exe_complete:exe_stage|alu:alu"
+Info (12128): Elaborating entity "suber" for hierarchy "exe_complete:exe_stage|alu:alu|suber:sub"
+Info (12128): Elaborating entity "adder" for hierarchy "exe_complete:exe_stage|alu:alu|adder:add"
+Info (12128): Elaborating entity "swap_resolver" for hierarchy "exe_complete:exe_stage|swap_resolver:resolver"
+Info (12128): Elaborating entity "load_store_unit" for hierarchy "exe_complete:exe_stage|load_store_unit:load_store_u"
+Info (12128): Elaborating entity "reg_file_forwarder" for hierarchy "exe_complete:exe_stage|reg_file_forwarder:reg_file_forward"
+Info (12128): Elaborating entity "arbiter" for hierarchy "arbiter:arbitrary"
+Warning (13046): Tri-state node(s) do not directly drive top-level pin(s)
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|ir_out[2]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|ir_out[1]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|ir_out[0]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|ir_out[3]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|ir_out[4]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|ir_out[5]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|ir_out[6]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|ir_out[7]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|ir_out[8]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|ir_out[9]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|ir_out[10]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|ir_out[11]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|ir_out[12]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|ir_out[13]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|ir_out[14]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|ir_out[15]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|ir_out[16]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|ir_out[17]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|ir_out[18]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|ir_out[19]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|ir_out[20]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|ir_out[21]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|ir_out[22]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|ir_out[23]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|ir_out[24]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|ir_out[25]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|ir_out[26]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|ir_out[27]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|ir_out[28]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rs_out[0]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rs_out[1]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rs_out[2]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rs_out[3]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rs_out[4]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rs_out[5]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rs_out[6]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rs_out[7]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rs_out[8]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rs_out[9]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rs_out[10]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rs_out[11]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rs_out[12]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rs_out[13]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rs_out[14]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rs_out[15]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rs_out[16]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rs_out[17]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rs_out[18]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rs_out[19]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rs_out[20]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rs_out[21]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rs_out[22]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rs_out[23]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rs_out[24]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rs_out[25]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rs_out[26]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rs_out[27]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rs_out[28]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rs_out[29]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rs_out[30]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rm_out[0]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rm_out[1]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rm_out[2]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rm_out[3]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rm_out[4]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rm_out[5]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rm_out[6]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rm_out[7]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rm_out[8]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rm_out[9]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rm_out[10]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rm_out[11]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rm_out[12]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rm_out[13]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rm_out[14]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rm_out[15]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rm_out[16]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rm_out[17]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rm_out[18]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rm_out[19]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rm_out[20]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rm_out[21]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rm_out[22]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rm_out[23]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rm_out[24]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rm_out[25]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rm_out[26]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rm_out[27]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rm_out[28]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rm_out[29]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rm_out[30]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rm_out[31]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rd_out[0]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rd_out[1]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rd_out[2]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rd_out[3]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rd_out[4]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rd_out[5]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rd_out[6]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rd_out[7]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rd_out[8]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rd_out[9]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rd_out[10]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rd_out[11]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rd_out[12]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rd_out[13]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rd_out[14]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rd_out[15]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rd_out[16]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rd_out[17]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rd_out[18]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rd_out[19]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rd_out[20]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rd_out[21]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rd_out[22]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rd_out[23]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rd_out[24]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rd_out[25]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rd_out[26]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rd_out[27]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rd_out[28]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rd_out[29]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rd_out[30]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rd_out[31]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rn_out[0]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rn_out[1]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rn_out[2]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rn_out[3]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rn_out[4]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rn_out[5]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rn_out[6]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rn_out[7]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rn_out[8]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rn_out[9]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rn_out[10]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rn_out[11]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rn_out[12]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rn_out[13]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rn_out[14]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rn_out[15]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rn_out[16]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rn_out[17]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rn_out[18]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rn_out[19]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rn_out[20]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rn_out[21]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rn_out[22]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rn_out[23]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rn_out[24]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rn_out[25]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rn_out[26]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rn_out[27]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rn_out[28]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rn_out[29]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rn_out[30]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "id_complete:id_stage|id_exe:id_exe|rn_out[31]" feeding internal logic into a wire
+Warning (13027): Removed fan-outs from the following always-disabled I/O buffers
+    Warning (13028): Removed fan-out from the always-disabled I/O buffer "if_complete:if_stage|cache:instr_cache|mem_data[0]" to the node "mem_data[0]"
+    Warning (13028): Removed fan-out from the always-disabled I/O buffer "if_complete:if_stage|cache:instr_cache|mem_data[1]" to the node "mem_data[1]"
+    Warning (13028): Removed fan-out from the always-disabled I/O buffer "if_complete:if_stage|cache:instr_cache|mem_data[2]" to the node "mem_data[2]"
+    Warning (13028): Removed fan-out from the always-disabled I/O buffer "if_complete:if_stage|cache:instr_cache|mem_data[3]" to the node "mem_data[3]"
+    Warning (13028): Removed fan-out from the always-disabled I/O buffer "if_complete:if_stage|cache:instr_cache|mem_data[4]" to the node "mem_data[4]"
+    Warning (13028): Removed fan-out from the always-disabled I/O buffer "if_complete:if_stage|cache:instr_cache|mem_data[5]" to the node "mem_data[5]"
+    Warning (13028): Removed fan-out from the always-disabled I/O buffer "if_complete:if_stage|cache:instr_cache|mem_data[6]" to the node "mem_data[6]"
+    Warning (13028): Removed fan-out from the always-disabled I/O buffer "if_complete:if_stage|cache:instr_cache|mem_data[7]" to the node "mem_data[7]"
+    Warning (13028): Removed fan-out from the always-disabled I/O buffer "if_complete:if_stage|cache:instr_cache|mem_data[8]" to the node "mem_data[8]"
+    Warning (13028): Removed fan-out from the always-disabled I/O buffer "if_complete:if_stage|cache:instr_cache|mem_data[9]" to the node "mem_data[9]"
+    Warning (13028): Removed fan-out from the always-disabled I/O buffer "if_complete:if_stage|cache:instr_cache|mem_data[10]" to the node "mem_data[10]"
+    Warning (13028): Removed fan-out from the always-disabled I/O buffer "if_complete:if_stage|cache:instr_cache|mem_data[11]" to the node "mem_data[11]"
+    Warning (13028): Removed fan-out from the always-disabled I/O buffer "if_complete:if_stage|cache:instr_cache|mem_data[12]" to the node "mem_data[12]"
+    Warning (13028): Removed fan-out from the always-disabled I/O buffer "if_complete:if_stage|cache:instr_cache|mem_data[13]" to the node "mem_data[13]"
+    Warning (13028): Removed fan-out from the always-disabled I/O buffer "if_complete:if_stage|cache:instr_cache|mem_data[14]" to the node "mem_data[14]"
+    Warning (13028): Removed fan-out from the always-disabled I/O buffer "if_complete:if_stage|cache:instr_cache|mem_data[15]" to the node "mem_data[15]"
+    Warning (13028): Removed fan-out from the always-disabled I/O buffer "if_complete:if_stage|cache:instr_cache|mem_data[16]" to the node "mem_data[16]"
+    Warning (13028): Removed fan-out from the always-disabled I/O buffer "if_complete:if_stage|cache:instr_cache|mem_data[17]" to the node "mem_data[17]"
+    Warning (13028): Removed fan-out from the always-disabled I/O buffer "if_complete:if_stage|cache:instr_cache|mem_data[18]" to the node "mem_data[18]"
+    Warning (13028): Removed fan-out from the always-disabled I/O buffer "if_complete:if_stage|cache:instr_cache|mem_data[19]" to the node "mem_data[19]"
+    Warning (13028): Removed fan-out from the always-disabled I/O buffer "if_complete:if_stage|cache:instr_cache|mem_data[20]" to the node "mem_data[20]"
+    Warning (13028): Removed fan-out from the always-disabled I/O buffer "if_complete:if_stage|cache:instr_cache|mem_data[21]" to the node "mem_data[21]"
+    Warning (13028): Removed fan-out from the always-disabled I/O buffer "if_complete:if_stage|cache:instr_cache|mem_data[22]" to the node "mem_data[22]"
+    Warning (13028): Removed fan-out from the always-disabled I/O buffer "if_complete:if_stage|cache:instr_cache|mem_data[23]" to the node "mem_data[23]"
+    Warning (13028): Removed fan-out from the always-disabled I/O buffer "if_complete:if_stage|cache:instr_cache|mem_data[24]" to the node "mem_data[24]"
+    Warning (13028): Removed fan-out from the always-disabled I/O buffer "if_complete:if_stage|cache:instr_cache|mem_data[25]" to the node "mem_data[25]"
+    Warning (13028): Removed fan-out from the always-disabled I/O buffer "if_complete:if_stage|cache:instr_cache|mem_data[26]" to the node "mem_data[26]"
+    Warning (13028): Removed fan-out from the always-disabled I/O buffer "if_complete:if_stage|cache:instr_cache|mem_data[27]" to the node "mem_data[27]"
+    Warning (13028): Removed fan-out from the always-disabled I/O buffer "if_complete:if_stage|cache:instr_cache|mem_data[28]" to the node "mem_data[28]"
+    Warning (13028): Removed fan-out from the always-disabled I/O buffer "if_complete:if_stage|cache:instr_cache|mem_data[29]" to the node "mem_data[29]"
+    Warning (13028): Removed fan-out from the always-disabled I/O buffer "if_complete:if_stage|cache:instr_cache|mem_data[30]" to the node "mem_data[30]"
+    Warning (13028): Removed fan-out from the always-disabled I/O buffer "if_complete:if_stage|cache:instr_cache|mem_data[31]" to the node "mem_data[31]"
+Warning (13004): Presettable and clearable registers converted to equivalent circuits with latches. Registers power-up to an undefined state, and DEVCLRn places the registers in an undefined state.
+    Warning (13310): Register "id_complete:id_stage|register_file:reg_file|registers[15][3]" is converted into an equivalent circuit using register "id_complete:id_stage|register_file:reg_file|registers[15][3]~_emulated" and latch "id_complete:id_stage|register_file:reg_file|registers[15][3]~1"
+    Warning (13310): Register "id_complete:id_stage|register_file:reg_file|registers[15][2]" is converted into an equivalent circuit using register "id_complete:id_stage|register_file:reg_file|registers[15][2]~_emulated" and latch "id_complete:id_stage|register_file:reg_file|registers[15][2]~5"
+    Warning (13310): Register "id_complete:id_stage|register_file:reg_file|registers[15][5]" is converted into an equivalent circuit using register "id_complete:id_stage|register_file:reg_file|registers[15][5]~_emulated" and latch "id_complete:id_stage|register_file:reg_file|registers[15][5]~9"
+    Warning (13310): Register "id_complete:id_stage|register_file:reg_file|registers[15][4]" is converted into an equivalent circuit using register "id_complete:id_stage|register_file:reg_file|registers[15][4]~_emulated" and latch "id_complete:id_stage|register_file:reg_file|registers[15][4]~13"
+    Warning (13310): Register "id_complete:id_stage|register_file:reg_file|registers[15][6]" is converted into an equivalent circuit using register "id_complete:id_stage|register_file:reg_file|registers[15][6]~_emulated" and latch "id_complete:id_stage|register_file:reg_file|registers[15][6]~17"
+    Warning (13310): Register "id_complete:id_stage|register_file:reg_file|registers[15][7]" is converted into an equivalent circuit using register "id_complete:id_stage|register_file:reg_file|registers[15][7]~_emulated" and latch "id_complete:id_stage|register_file:reg_file|registers[15][7]~21"
+    Warning (13310): Register "id_complete:id_stage|register_file:reg_file|registers[15][8]" is converted into an equivalent circuit using register "id_complete:id_stage|register_file:reg_file|registers[15][8]~_emulated" and latch "id_complete:id_stage|register_file:reg_file|registers[15][8]~25"
+    Warning (13310): Register "id_complete:id_stage|register_file:reg_file|registers[15][9]" is converted into an equivalent circuit using register "id_complete:id_stage|register_file:reg_file|registers[15][9]~_emulated" and latch "id_complete:id_stage|register_file:reg_file|registers[15][9]~29"
+    Warning (13310): Register "id_complete:id_stage|register_file:reg_file|registers[15][10]" is converted into an equivalent circuit using register "id_complete:id_stage|register_file:reg_file|registers[15][10]~_emulated" and latch "id_complete:id_stage|register_file:reg_file|registers[15][10]~33"
+    Warning (13310): Register "id_complete:id_stage|register_file:reg_file|registers[15][11]" is converted into an equivalent circuit using register "id_complete:id_stage|register_file:reg_file|registers[15][11]~_emulated" and latch "id_complete:id_stage|register_file:reg_file|registers[15][11]~37"
+    Warning (13310): Register "id_complete:id_stage|register_file:reg_file|registers[15][12]" is converted into an equivalent circuit using register "id_complete:id_stage|register_file:reg_file|registers[15][12]~_emulated" and latch "id_complete:id_stage|register_file:reg_file|registers[15][12]~41"
+    Warning (13310): Register "id_complete:id_stage|register_file:reg_file|registers[15][13]" is converted into an equivalent circuit using register "id_complete:id_stage|register_file:reg_file|registers[15][13]~_emulated" and latch "id_complete:id_stage|register_file:reg_file|registers[15][13]~45"
+    Warning (13310): Register "id_complete:id_stage|register_file:reg_file|registers[15][14]" is converted into an equivalent circuit using register "id_complete:id_stage|register_file:reg_file|registers[15][14]~_emulated" and latch "id_complete:id_stage|register_file:reg_file|registers[15][14]~49"
+    Warning (13310): Register "id_complete:id_stage|register_file:reg_file|registers[15][15]" is converted into an equivalent circuit using register "id_complete:id_stage|register_file:reg_file|registers[15][15]~_emulated" and latch "id_complete:id_stage|register_file:reg_file|registers[15][15]~53"
+    Warning (13310): Register "id_complete:id_stage|register_file:reg_file|registers[15][16]" is converted into an equivalent circuit using register "id_complete:id_stage|register_file:reg_file|registers[15][16]~_emulated" and latch "id_complete:id_stage|register_file:reg_file|registers[15][16]~57"
+    Warning (13310): Register "id_complete:id_stage|register_file:reg_file|registers[15][17]" is converted into an equivalent circuit using register "id_complete:id_stage|register_file:reg_file|registers[15][17]~_emulated" and latch "id_complete:id_stage|register_file:reg_file|registers[15][17]~61"
+    Warning (13310): Register "id_complete:id_stage|register_file:reg_file|registers[15][18]" is converted into an equivalent circuit using register "id_complete:id_stage|register_file:reg_file|registers[15][18]~_emulated" and latch "id_complete:id_stage|register_file:reg_file|registers[15][18]~65"
+    Warning (13310): Register "id_complete:id_stage|register_file:reg_file|registers[15][19]" is converted into an equivalent circuit using register "id_complete:id_stage|register_file:reg_file|registers[15][19]~_emulated" and latch "id_complete:id_stage|register_file:reg_file|registers[15][19]~69"
+    Warning (13310): Register "id_complete:id_stage|register_file:reg_file|registers[15][20]" is converted into an equivalent circuit using register "id_complete:id_stage|register_file:reg_file|registers[15][20]~_emulated" and latch "id_complete:id_stage|register_file:reg_file|registers[15][20]~73"
+    Warning (13310): Register "id_complete:id_stage|register_file:reg_file|registers[15][21]" is converted into an equivalent circuit using register "id_complete:id_stage|register_file:reg_file|registers[15][21]~_emulated" and latch "id_complete:id_stage|register_file:reg_file|registers[15][21]~77"
+    Warning (13310): Register "id_complete:id_stage|register_file:reg_file|registers[15][22]" is converted into an equivalent circuit using register "id_complete:id_stage|register_file:reg_file|registers[15][22]~_emulated" and latch "id_complete:id_stage|register_file:reg_file|registers[15][22]~81"
+    Warning (13310): Register "id_complete:id_stage|register_file:reg_file|registers[15][23]" is converted into an equivalent circuit using register "id_complete:id_stage|register_file:reg_file|registers[15][23]~_emulated" and latch "id_complete:id_stage|register_file:reg_file|registers[15][23]~85"
+    Warning (13310): Register "id_complete:id_stage|register_file:reg_file|registers[15][24]" is converted into an equivalent circuit using register "id_complete:id_stage|register_file:reg_file|registers[15][24]~_emulated" and latch "id_complete:id_stage|register_file:reg_file|registers[15][24]~89"
+    Warning (13310): Register "id_complete:id_stage|register_file:reg_file|registers[15][25]" is converted into an equivalent circuit using register "id_complete:id_stage|register_file:reg_file|registers[15][25]~_emulated" and latch "id_complete:id_stage|register_file:reg_file|registers[15][25]~93"
+    Warning (13310): Register "id_complete:id_stage|register_file:reg_file|registers[15][26]" is converted into an equivalent circuit using register "id_complete:id_stage|register_file:reg_file|registers[15][26]~_emulated" and latch "id_complete:id_stage|register_file:reg_file|registers[15][26]~97"
+    Warning (13310): Register "id_complete:id_stage|register_file:reg_file|registers[15][27]" is converted into an equivalent circuit using register "id_complete:id_stage|register_file:reg_file|registers[15][27]~_emulated" and latch "id_complete:id_stage|register_file:reg_file|registers[15][27]~101"
+    Warning (13310): Register "id_complete:id_stage|register_file:reg_file|registers[15][28]" is converted into an equivalent circuit using register "id_complete:id_stage|register_file:reg_file|registers[15][28]~_emulated" and latch "id_complete:id_stage|register_file:reg_file|registers[15][28]~105"
+    Warning (13310): Register "id_complete:id_stage|register_file:reg_file|registers[15][29]" is converted into an equivalent circuit using register "id_complete:id_stage|register_file:reg_file|registers[15][29]~_emulated" and latch "id_complete:id_stage|register_file:reg_file|registers[15][29]~109"
+    Warning (13310): Register "id_complete:id_stage|register_file:reg_file|registers[15][30]" is converted into an equivalent circuit using register "id_complete:id_stage|register_file:reg_file|registers[15][30]~_emulated" and latch "id_complete:id_stage|register_file:reg_file|registers[15][30]~113"
+    Warning (13310): Register "id_complete:id_stage|register_file:reg_file|registers[15][31]" is converted into an equivalent circuit using register "id_complete:id_stage|register_file:reg_file|registers[15][31]~_emulated" and latch "id_complete:id_stage|register_file:reg_file|registers[15][31]~117"
+    Warning (13310): Register "id_complete:id_stage|register_file:reg_file|registers[15][1]" is converted into an equivalent circuit using register "id_complete:id_stage|register_file:reg_file|registers[15][1]~_emulated" and latch "id_complete:id_stage|register_file:reg_file|registers[15][1]~121"
+    Warning (13310): Register "id_complete:id_stage|register_file:reg_file|registers[15][0]" is converted into an equivalent circuit using register "id_complete:id_stage|register_file:reg_file|registers[15][0]~_emulated" and latch "id_complete:id_stage|register_file:reg_file|registers[15][0]~125"
+Info (17049): 191 registers lost all their fanouts during netlist optimizations.
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 6456 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 3 input pins
+    Info (21059): Implemented 35 output pins
+    Info (21060): Implemented 32 bidirectional pins
+    Info (21061): Implemented 6322 logic cells
+    Info (21064): Implemented 64 RAM segments
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 227 warnings
+    Info: Peak virtual memory: 538 megabytes
+    Info: Processing ended: Wed Aug 27 18:45:17 2014
+    Info: Elapsed time: 00:00:28
+    Info: Total CPU time (on all processors): 00:00:28
+
+

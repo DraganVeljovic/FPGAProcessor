@@ -1,0 +1,27 @@
+library ieee;
+
+use ieee.std_logic_1164.all;
+
+use work.instructions_types.all;
+
+entity exe_complete is
+
+	port(
+	
+		clk : in std_logic;
+		reset : in std_logic;
+		
+		ir_in : in std_logic_vector (31 downto 0);
+	
+		rn : in std_logic_vector (31 downto 0);
+		rd : in std_logic_vector (31 downto 0);
+		rm : in std_logic_vector (31 downto 0);
+		rs : in std_logic_vector (31 downto 0);
+	
+	);
+
+end;
+
+architecture exe_complete_behave of exe_complete is
+begin
+end exe_complete_behave;

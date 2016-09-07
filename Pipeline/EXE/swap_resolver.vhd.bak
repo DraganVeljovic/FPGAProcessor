@@ -1,0 +1,23 @@
+library ieee;
+
+use ieee.std_logic_1164.all;
+
+entity swap_resolver is
+	
+	port (
+	
+		alu_result : in std_logic_vector (31 downto 0);
+		
+		rd : in std_logic_vector (31 downto 0);
+		
+		ir_in : in std_logic_vector (31 downto 0);
+		
+		swap_resolver_out : out std_logic_vector (31 downto 0);
+	
+	);
+
+end;
+
+architecture swap_resolver_behave of swap_resolver is 
+begin
+end swap_resolver_behave;

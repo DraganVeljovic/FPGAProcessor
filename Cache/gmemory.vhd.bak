@@ -1,0 +1,61 @@
+library ieee;
+
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity memory is
+  generic (
+      tcq : time := 2 ns;
+		
+		address_width : integer := 10;
+		data_width : integer := 32
+  );
+  
+	port
+	(
+		clk : in std_logic;
+		
+		wr : in std_logic;
+		
+		addr : in std_logic_vector ((address_width - 1) downto 0);
+		
+		data : inout std_logic_vector ((data_width - 1) downto 0)
+	);
+end memory;
+
+
+
+architecture rtl of memory is
+	
+	type mem_type is array (0 to (2 ** address_width - 1)) of std_logic_vector((data_width - 1) downto 0);
+	
+	signal mem_reg, mem_next : mem_type;
+	
+	signal addr_reg, addr_next : std_logic_vector((address_width - 1) downto 0);
+	
+begin
+
+	process (clk)
+	begin
+		if (rising_edge(clk)) then
+			mem_reg <= mem_next after tcq;
+			addr_reg <= addr_next after tcq;
+		end if;
+	end process;
+	
+	process (mem_reg, wr, addr, data) is
+	begin
+		
+		mem_next <= mem_reg after tcq;
+	
+		if (wr = '1') then
+			mem_next(to_integer(unsigned(addr))) <= data after tcq;
+		end if;
+		
+		addr_next <= addr after tcq;
+		
+	end process;
+	
+	data <= mem_reg(to_integer(unsigned(addr_reg))) after tcq;
+	
+end rtl;

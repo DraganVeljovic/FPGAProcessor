@@ -1,0 +1,85 @@
+m255
+K3
+13
+cModel Technology
+Z0 dD:\Quartus Projects\VLSIProjekat\Cache\simulation\modelsim
+Ecache
+Z1 w1406640065
+Z2 DPx4 ieee 11 numeric_std 0 22 O3PF8EB`?j9=z7KT`fn941
+Z3 DPx4 ieee 15 std_logic_arith 0 22 4`Y?g_lkdn;7UL9IiJck01
+Z4 DPx4 ieee 18 std_logic_unsigned 0 22 RYmj;=TK`k=k>D@Cz`zoB3
+Z5 DPx3 std 6 textio 0 22 5>J:;AW>W0[[dW0I6EN1Q0
+Z6 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
+Z7 dD:\Quartus Projects\VLSIProjekat\Cache\simulation\modelsim
+Z8 8D:/Quartus Projects/VLSIProjekat/Cache/cache.vhd
+Z9 FD:/Quartus Projects/VLSIProjekat/Cache/cache.vhd
+l0
+L7
+VZSc6Nhl0^NoF2kM5;PW@O0
+Z10 OV;C;10.1d;51
+31
+Z11 !s108 1406640230.703000
+Z12 !s90 -reportprogress|300|-93|-work|work|D:/Quartus Projects/VLSIProjekat/Cache/cache.vhd|
+Z13 !s107 D:/Quartus Projects/VLSIProjekat/Cache/cache.vhd|
+Z14 o-93 -work work -O0
+Z15 tExplicit 1
+!s100 [?I:hIA_W`KW^lT_j7I8W1
+!i10b 1
+Acache_behave
+R2
+R3
+R4
+R5
+R6
+Z16 DEx4 work 5 cache 0 22 ZSc6Nhl0^NoF2kM5;PW@O0
+l97
+L50
+V>SkfhHi1YY42;O9>^?@g?3
+R10
+31
+R11
+R12
+R13
+R14
+R15
+!s100 e86XUhoa6`DhkKz6Y^zAi1
+!i10b 1
+Ecache_test
+Z17 w1406639855
+R5
+R6
+R7
+Z18 8D:/Quartus Projects/VLSIProjekat/Cache/tests/cache_test.vhd
+Z19 FD:/Quartus Projects/VLSIProjekat/Cache/tests/cache_test.vhd
+l0
+L4
+Vi7Q56?WY^Mk901ZiYR:K43
+!s100 ClXX[<DUTEO=RCfzd5YiD0
+R10
+31
+!i10b 1
+Z20 !s108 1406640230.976000
+Z21 !s90 -reportprogress|300|-93|-work|work|D:/Quartus Projects/VLSIProjekat/Cache/tests/cache_test.vhd|
+Z22 !s107 D:/Quartus Projects/VLSIProjekat/Cache/tests/cache_test.vhd|
+R14
+R15
+Atest
+R2
+R3
+R4
+R16
+R5
+R6
+DEx4 work 10 cache_test 0 22 i7Q56?WY^Mk901ZiYR:K43
+l34
+L7
+V4<9OaZAXlaURDZRe_^:9R0
+!s100 BTikfoJZbk88?KCjDaECi1
+R10
+31
+!i10b 1
+R20
+R21
+R22
+R14
+R15

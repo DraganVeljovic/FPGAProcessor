@@ -1,0 +1,157 @@
+-- Copyright (C) 1991-2013 Altera Corporation
+-- Your use of Altera Corporation's design tools, logic functions 
+-- and other software and tools, and its AMPP partner logic 
+-- functions, and any output files from any of the foregoing 
+-- (including device programming or simulation files), and any 
+-- associated documentation or information are expressly subject 
+-- to the terms and conditions of the Altera Program License 
+-- Subscription Agreement, Altera MegaCore Function License 
+-- Agreement, or other applicable license agreement, including, 
+-- without limitation, that your use is for the sole purpose of 
+-- programming logic devices manufactured by Altera and sold by 
+-- Altera or its authorized distributors.  Please refer to the 
+-- applicable agreement for further details.
+
+-- ***************************************************************************
+-- This file contains a Vhdl test bench template that is freely editable to   
+-- suit user's needs .Comments are provided in each section to help the user  
+-- fill out necessary details.                                                
+-- ***************************************************************************
+-- Generated on "08/06/2014 11:52:03"
+                                                            
+-- Vhdl Test Bench template for design  :  if_complete
+-- 
+-- Simulation tool : ModelSim-Altera (VHDL)
+-- 
+
+LIBRARY ieee;                                               
+USE ieee.std_logic_1164.all;                                
+
+ENTITY if_complete_vhd_tst IS
+END if_complete_vhd_tst;
+ARCHITECTURE if_complete_arch OF if_complete_vhd_tst IS
+-- constants                                                 
+-- signals                                                   
+SIGNAL ack : STD_LOGIC;
+SIGNAL brnch : STD_LOGIC;
+SIGNAL clk : STD_LOGIC;
+SIGNAL ir_out : STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL jmp_addr : STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL mem_addr : STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL mem_data : STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL mem_read : STD_LOGIC;
+SIGNAL pc_init : STD_LOGIC;
+SIGNAL pc_init_value : STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL pc_new_out : STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL pc_out : STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL req : STD_LOGIC;
+SIGNAL reset : STD_LOGIC;
+SIGNAL stall : STD_LOGIC;
+SIGNAL stop : STD_LOGIC;
+SIGNAL wait_mem : STD_LOGIC;
+COMPONENT if_complete
+	PORT (
+	ack : IN STD_LOGIC;
+	brnch : IN STD_LOGIC;
+	clk : IN STD_LOGIC;
+	ir_out : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+	jmp_addr : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+	mem_addr : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+	mem_data : INOUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+	mem_read : OUT STD_LOGIC;
+	pc_init : IN STD_LOGIC;
+	pc_init_value : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+	pc_new_out : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+	pc_out : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+	req : OUT STD_LOGIC;
+	reset : IN STD_LOGIC;
+	stall : IN STD_LOGIC;
+	stop : IN STD_LOGIC;
+	wait_mem : OUT STD_LOGIC
+	);
+END COMPONENT;
+
+component memory
+	port(
+	
+		clk : in std_logic;
+		reset : in std_logic;
+		
+		rd : in std_logic;
+		wr : in std_logic;
+		
+		addr : in std_logic_vector (31 downto 0);
+		
+		data : inout std_logic_vector (31 downto 0)
+	
+	);
+end component;
+
+BEGIN
+	i1 : if_complete
+	PORT MAP (
+-- list connections between master ports and signals
+	ack => ack,
+	brnch => brnch,
+	clk => clk,
+	ir_out => ir_out,
+	jmp_addr => jmp_addr,
+	mem_addr => mem_addr,
+	mem_data => mem_data,
+	mem_read => mem_read,
+	pc_init => pc_init,
+	pc_init_value => pc_init_value,
+	pc_new_out => pc_new_out,
+	pc_out => pc_out,
+	req => req,
+	reset => reset,
+	stall => wait_mem,
+	stop => stop,
+	wait_mem => wait_mem
+	);
+	
+	mem : memory port map (
+		clk => clk,
+		reset => reset,
+		rd => mem_read,
+		wr => '0',
+		addr => mem_addr,
+		data => mem_data
+	);
+	
+PROCESS                                               
+BEGIN                                                        
+   clk <= '1';
+	wait for 5 ns;
+	clk <= '0';
+	wait for 5 ns;                                           
+END PROCESS;
+                                           
+PROCESS                                              
+BEGIN                                                         
+  		reset <= '1';
+		ack <= '1';
+		stall <= '0';
+		stop <= '0';
+		brnch <= '0';
+		jmp_addr <= (others => '0');
+		pc_init <= '1';
+		pc_init_value <= x"0001_0000";
+		
+		wait until rising_edge(clk);
+		
+		reset <= '0';
+		pc_init <= '0';
+		pc_init_value <= (others => 'Z');
+		
+		wait until rising_edge(clk);
+
+		wait until rising_edge(clk);
+		wait until rising_edge(clk);
+		wait until rising_edge(clk);
+		wait until rising_edge(clk);wait until rising_edge(clk);
+		
+
+WAIT;                                                        
+END PROCESS;                                          
+END if_complete_arch;

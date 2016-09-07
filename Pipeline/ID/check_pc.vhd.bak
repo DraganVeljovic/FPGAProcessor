@@ -1,0 +1,10 @@
+library ieee;
+
+use ieee.std_logic_1164.all;
+
+entity check_pc is
+end check_pc;
+
+architecture check_pc_behave of check_pc is
+begin
+end check_pc_behave;

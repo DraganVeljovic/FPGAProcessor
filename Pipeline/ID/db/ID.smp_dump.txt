@@ -1,0 +1,23 @@
+
+State Machine - |id_complete|id_exe:id_exe|instr_type_out
+Name instr_type_out.STP~reg0 instr_type_out.BBL~reg0 instr_type_out.LS~reg0 instr_type_out.DP_I~reg0 instr_type_out.DP_R~reg0 instr_type_out.INVALID~reg0 
+instr_type_out.INVALID~reg0 0 0 0 0 0 0 
+instr_type_out.DP_R~reg0 0 0 0 0 1 1 
+instr_type_out.DP_I~reg0 0 0 0 1 0 1 
+instr_type_out.LS~reg0 0 0 1 0 0 1 
+instr_type_out.BBL~reg0 0 1 0 0 0 1 
+instr_type_out.STP~reg0 1 0 0 0 0 1 
+
+State Machine - |id_complete|cache:data_cache|current_state
+Name current_state.ACK_WAIT_STP current_state.ACK_WAIT_WB current_state.ACK_WAIT_RM current_state.STOPED_STATE current_state.WAITING_WB_STATE current_state.WRITE_BACK_STATE current_state.EXECUTE_STATE current_state.READ_DBUS_STATE current_state.WAITING_STATE current_state.READ_MEM_STATE current_state.IDLE_STATE 
+current_state.IDLE_STATE 0 0 0 0 0 0 0 0 0 0 0 
+current_state.READ_MEM_STATE 0 0 0 0 0 0 0 0 0 1 1 
+current_state.WAITING_STATE 0 0 0 0 0 0 0 0 1 0 1 
+current_state.READ_DBUS_STATE 0 0 0 0 0 0 0 1 0 0 1 
+current_state.EXECUTE_STATE 0 0 0 0 0 0 1 0 0 0 1 
+current_state.WRITE_BACK_STATE 0 0 0 0 0 1 0 0 0 0 1 
+current_state.WAITING_WB_STATE 0 0 0 0 1 0 0 0 0 0 1 
+current_state.STOPED_STATE 0 0 0 1 0 0 0 0 0 0 1 
+current_state.ACK_WAIT_RM 0 0 1 0 0 0 0 0 0 0 1 
+current_state.ACK_WAIT_WB 0 1 0 0 0 0 0 0 0 0 1 
+current_state.ACK_WAIT_STP 1 0 0 0 0 0 0 0 0 0 1 

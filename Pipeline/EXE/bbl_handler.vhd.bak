@@ -1,0 +1,51 @@
+library ieee;
+
+use ieee.std_logic_1164.all;
+
+entity bbl_handler is
+
+	port(
+		
+		pc : in std_logic_vector (31 downto 0);
+		pc_new : in std_logic_vector (31 downto 0);
+		
+		link : in std_logic;
+		
+		cond : in std_logic_vector (1 downto 0);
+		
+		jmp_addr : out std_logic_vector (31 downto 0);
+		
+		link_reg : out std_logic_vector (31 downto 0);
+		link_reg_no : out std_logic_vector (3 downto 0);
+		link_reg_wr : out std_logic
+	
+	);
+
+end bbl_handler;
+
+architecture bbl_handler_behave of bbl_handler is
+begin
+
+	process () is
+	begin
+	
+		jmp_addr <= "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ";
+		
+		link_reg <= "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ";
+		link_reg_no <= "ZZZZ";
+		link_reg_wr <= 'Z';
+		
+		if ((cond = "00" and csr(30) = '1') or
+			(cond = "01" and (((csr(31) xor csr(28)) or csr(30)) = '0')) or
+			(cond = "10" and (csr(30) = '0' or csr(29) = '0')) or
+			(cond = "11") then
+			
+			if (link = '1') then
+			elsif (link = '0') then
+				end if;
+			
+		end if;
+	
+	end process;
+
+end bbl_handler_behave;

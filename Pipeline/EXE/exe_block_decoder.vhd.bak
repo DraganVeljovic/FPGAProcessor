@@ -1,0 +1,10 @@
+library ieee;
+
+use ieee.std_logic_1164.all;
+
+entity exe_block_decoder is
+end exe_block_decoder;
+
+architecture exe_block_decoder_behave of exe_block_decoder is
+begin
+end exe_block_decoder_behave;

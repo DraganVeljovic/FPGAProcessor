@@ -1,0 +1,10 @@
+library ieee;
+
+use ieee.std_logic_1164.all;
+
+entity alu is
+end alu;
+
+architecture alu_behave of alu is 
+begin
+end alu_behave;

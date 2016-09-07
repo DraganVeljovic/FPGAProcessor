@@ -1,0 +1,19 @@
+library ieee;
+
+use ieee.std_logic_1164.all;
+
+entity module is 
+
+	port(
+	
+		cs : in std_logic;
+		
+		
+	
+	);
+	
+end;
+
+architecture module_behave of module is
+begin
+end module_behave;

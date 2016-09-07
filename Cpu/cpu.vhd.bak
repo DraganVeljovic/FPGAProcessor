@@ -1,0 +1,11 @@
+library ieee;
+
+use ieee.std_logic_1164.all;
+
+entity cpu is
+
+end cpu;
+
+architecture cpu_behave of cpu is
+begin
+end cpu_behave;
